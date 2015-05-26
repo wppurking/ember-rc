@@ -1,2 +1,30 @@
-<h2 id="title">Welcome to Ember.js</h2>
-index
+<div class="list">
+  {{#each last_actived as |topic|}}
+    <div class="topic media topic-{{topic.id}}">
+      <div class="avatar media-left">
+        <a href="/etnl"><img class="media-object avatar-48"
+                             src="https://ruby-china-files.b0.upaiyun.com/user/large_avatar/11955.jpg" alt="11955"></a>
+      </div>
+      <div class="infos media-body">
+        <div class="title media-heading">
+          <a title="如何在源码阶段写出更快的 Ruby" href="/topics/25728">如何在源码阶段写出更快的 Ruby</a>
+          <i title="精华帖" class="fa fa-diamond"></i>
+        </div>
+        <div class="info">
+          <a class="node" href="/topics/node68">翻译</a>
+          •
+          <a data-name="" href="/etnl">etnl</a>
+          <span class="hidden-mobile">
+          •
+            最后由 <a data-name="meeasyhappy" href="/meeasyhappy">meeasyhappy</a> 于 <abbr class="timeago"
+                                                                                       title="2015-05-26T22:51:43+08:00">2
+            小时前</abbr>回复
+          </span>
+        </div>
+      </div>
+      <div class="count media-right">
+        <a class="state-false state-true" href="/topics/25728#reply2">2</a>
+      </div>
+    </div>
+  {{/each}}
+</div>
