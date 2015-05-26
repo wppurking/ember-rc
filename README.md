@@ -1,7 +1,6 @@
 # Ember-rc
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+使用 Ember.js + Ember-data 编写的 RubyChina 的客户端.
 
 ## Prerequisites
 
