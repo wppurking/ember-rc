@@ -7,7 +7,7 @@
       </div>
       <div class="infos media-body">
         <div class="title media-heading">
-          <a title={{topic.title}} href="/topics/25728">{{topic.title}}</a>
+          {{#link-to 'topics.show' topic title=topic.title}}{{topic.title}}{{/link-to}}
         </div>
         <div class="info">
           <a class="node" href="/topics/{{topic.node_id}}">{{topic.node_name}}</a>

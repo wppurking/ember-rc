@@ -42,7 +42,21 @@ var Topic = DS.Model.extend({
   last_reply_user_login: DS.attr('string'),
 
   deleted: DS.attr('boolean'),
-  user: DS.belongsTo()
+
+  body: DS.attr('string'),
+  body_html: DS.attr('string'),
+
+  user: DS.belongsTo(),
+
+  refresh(force=false) {
+    if(force) {
+      return this.reload();
+    } else if(Ember.isEmpty(this.get('body')) || Ember.isEmpty(this.get('body_html'))) {
+      return this.reload();
+    } else {
+      return this;
+    }
+  }
 });
 
 Topic.reopenClass({

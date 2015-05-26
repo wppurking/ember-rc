@@ -17,9 +17,7 @@ export default DS.ActiveModelSerializer.extend(DS.EmbeddedRecordsMixin, {
     return this._super(store, type, payload, id, requestType);
   },
 
-
   extractSingle: function(store, type, payload, id) {
-    console.log(payload);
     return this._super(store, type, payload, id);
   }
 });
