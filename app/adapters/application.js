@@ -1,5 +1,6 @@
 import DS from 'ember-data';
 
+/*
 export default DS.ActiveModelAdapter.extend({
   // use ember-cli proxy
   //host: 'https://ruby-china.org/api/v3',
@@ -12,3 +13,7 @@ export default DS.ActiveModelAdapter.extend({
   }
 
 });
+*/
+
+// 避免每次都向 Ruby-China 获取信息, 使用 FixtureAdapter 进行测试代替
+export default DS.FixtureAdapter.extend({});
