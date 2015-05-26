@@ -1,7 +1,7 @@
 {
   "name": "ember-rc",
-  "version": "0.0.0",
-  "description": "Small description for ember-rc goes here",
+  "version": "0.1.0",
+  "description": "使用 Ember.js + Ember-data 编写的 RubyChina 的客户端.",
   "private": true,
   "directories": {
     "doc": "doc",
