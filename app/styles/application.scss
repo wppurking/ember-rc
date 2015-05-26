@@ -11,7 +11,7 @@ body {
       color: #333 !important;
       font-weight: bold;
 
-      b{
+      b {
         color: $rubyColor;
       }
     }
@@ -29,11 +29,44 @@ body {
         a {
           color: $rubyColor !important;
           background-color: transparent !important;
-          border-bottom: 3px solid #EB5424;
+          border-bottom: 3px solid $rubyColor;
         }
       }
     }
     // end ul
 
+  }
+}
+
+.topic {
+  padding: 10px 15px;
+  min-height: 68px;
+  border-bottom: 1px solid $lightGray;
+
+  .title {
+    font-size: 15px;
+  }
+
+  .info {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 10px;
+
+    a {
+      color: $grayBlackColor;
+    }
+
+    .node {
+      padding: 1px 5px;
+      color: $grayBlackColor;
+      background-color: $lightGray;
+    }
+  }
+
+  .avatar {
+    .avatar-48 {
+      width: 48px;
+      height: 48px;
+    }
   }
 }

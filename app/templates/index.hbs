@@ -3,22 +3,19 @@
     <div class="topic media topic-{{topic.id}}">
       <div class="avatar media-left">
         <a href="/etnl"><img class="media-object avatar-48"
-                             src="https://ruby-china-files.b0.upaiyun.com/user/large_avatar/11955.jpg" alt="11955"></a>
+                             src={{topic.user.avatar_url}} alt={{topic.user.id}}></a>
       </div>
       <div class="infos media-body">
         <div class="title media-heading">
-          <a title="如何在源码阶段写出更快的 Ruby" href="/topics/25728">如何在源码阶段写出更快的 Ruby</a>
-          <i title="精华帖" class="fa fa-diamond"></i>
+          <a title={{topic.title}} href="/topics/25728">{{topic.title}}</a>
         </div>
         <div class="info">
-          <a class="node" href="/topics/node68">翻译</a>
+          <a class="node" href="/topics/{{topic.node_id}}">{{topic.node_name}}</a>
           •
-          <a data-name="" href="/etnl">etnl</a>
+          <a data-name="" href="/etnl">{{topic.user.login}}</a>
           <span class="hidden-mobile">
           •
-            最后由 <a data-name="meeasyhappy" href="/meeasyhappy">meeasyhappy</a> 于 <abbr class="timeago"
-                                                                                       title="2015-05-26T22:51:43+08:00">2
-            小时前</abbr>回复
+            最后由 <a href="/meeasyhappy">{{topic.last_reply_user_login}}</a> 于 {{topic.replied_at}}回复
           </span>
         </div>
       </div>
