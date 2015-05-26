@@ -1,0 +1,39 @@
+body {
+  // 导航栏
+  padding-top: 70px;
+}
+
+.header {
+  header.navbar {
+    background-color: white;
+
+    .navbar-brand {
+      color: #333 !important;
+      font-weight: bold;
+
+      b{
+        color: $rubyColor;
+      }
+    }
+
+    ul {
+      li {
+        a {
+          &:hover {
+            color: $rubyColor !important;
+          }
+        }
+      }
+
+      li.active {
+        a {
+          color: $rubyColor !important;
+          background-color: transparent !important;
+          border-bottom: 3px solid #EB5424;
+        }
+      }
+    }
+    // end ul
+
+  }
+}
