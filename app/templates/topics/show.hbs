@@ -53,8 +53,8 @@
       共收到 <b>{{model.replies_count}}</b> 条回复
     </div>
     <div class="items panel-body">
-      {{#each model.replies as |reply|}}
-        {{topics-show-reply reply=reply}}
+      {{#each model.replies as |reply i|}}
+        {{topics-show-reply reply=reply num=i}}
       {{/each}}
     </div>
   {{/if}}
