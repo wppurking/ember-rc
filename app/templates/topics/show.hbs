@@ -10,15 +10,17 @@
         ·
         于 <abbr class="timeago" title="2015-05-25T13:59:28+08:00">1 天前</abbr>发布
         ·
-        最后由 <a data-name="imlcl" href="/imlcl">imlcl</a> 于 <abbr class="timeago" title="2015-05-27T01:24:55+08:00">2
-        小时前</abbr>回复
+        最后由
+        <a data-name="imlcl" href="/imlcl">imlcl</a> 于 <abbr class="timeago" title="2015-05-27T01:24:55+08:00">
+        2 小时前</abbr>回复
         ·
         {{model.hits}} 次阅读
       </div>
     </div>
     <div class="avatar media-right">
-      <a href="/etnl"><img class="media-object avatar-48"
-                           src="{{model.user.avatar_url}}" alt="{{model.user.id}}"></a>
+      <a href="/etnl">
+        <img class="media-object avatar-48" src="{{model.user.avatar_url}}" alt="{{model.user.id}}">
+      </a>
     </div>
   </div>
 
@@ -30,12 +32,31 @@
 
   <div class="panel-footer clearfix">
     <div class="opts">
-      <a title="喜欢" data-count="12" data-state="" data-type="Topic" data-id="25728" class="likeable " href="#"><i
-          class="fa fa-heart-o"></i> <span>12 人喜欢</span></a>
+      <a title="喜欢" data-count="12" data-state="" data-type="Topic" data-id="25728" class="likeable " href="#">
+        <i class="fa fa-heart-o"></i>
+        <span>12 人喜欢</span>
+      </a>
       <a data-id="25728" data-followed="false" class="follow" href="#"><i class="fa fa-eye"></i> 关注</a>
       <a title="收藏" class="bookmark " data-id="25728" href="#"><i class="fa fa-bookmark"></i></a>
-  <span class="pull-right opts">
-  </span>
+      <span class="pull-right opts"> </span>
     </div>
   </div>
+</div>
+
+<div id="replies" class="panel panel-default" data-last-floor="12">
+  {{#if isLoadingTopics}}
+    <div class="total panel-heading">
+      Loading...
+    </div>
+  {{else}}
+    <div class="total panel-heading">
+      共收到 <b>12</b> 条回复
+    </div>
+    <div class="items panel-body">
+      {{#each model.replies as |reply|}}
+        <div>{{{reply.body_html}}}</div>
+      {{/each}}
+    </div>
+  {{/if}}
+  <div class="panel-footer clearfix"></div>
 </div>

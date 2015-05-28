@@ -11,5 +11,6 @@ export default DS.Model.extend({
   name: DS.attr('string'),
   avatar_url: DS.attr('string'),
 
-  topics: DS.hasMany('topic')
+  topics: DS.hasMany('topic'),
+  replies: DS.hasMany('reply')
 });

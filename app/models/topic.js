@@ -40,13 +40,15 @@ var Topic = DS.Model.extend({
 
   last_reply_user_id: DS.attr('number'),
   last_reply_user_login: DS.attr('string'),
+  hits: DS.attr('number'),
 
   deleted: DS.attr('boolean'),
 
   body: DS.attr('string'),
   body_html: DS.attr('string'),
 
-  user: DS.belongsTo(),
+  user: DS.belongsTo('user'),
+  replies: DS.hasMany('reply', {async: true}),
 
   refresh(force=false) {
     if(force) {

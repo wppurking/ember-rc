@@ -8,16 +8,28 @@ export default DS.ActiveModelSerializer.extend(DS.EmbeddedRecordsMixin, {
     user: {embedded: 'always'}
   },
 
-  serialize: function(record, options) {
+  serialize(record, options) {
     console.log('YES ITS BLOODY USING THE REST SERIALIZER');
     return this._super(record, options);
   },
-  extract: function(store, type, payload, id, requestType) {
-    console.log("解析 json 到 object:" + payload);
+  extract(store, type, payload, id, requestType) {
+    console.log(id + "解析 json 到 object:" + payload);
     return this._super(store, type, payload, id, requestType);
   },
 
-  extractSingle: function(store, type, payload, id) {
+  extractSingle(store, type, payload, id) {
+    console.log(id + "extractSingle..." + id);
     return this._super(store, type, payload, id);
+  },
+
+  normalizePayload(preload) {
+    if(preload['topic']) {
+      var topic = preload['topic'];
+      topic.links = {
+        replies: `replies.json`
+      };
+      console.log(preload);
+    }
+    return preload;
   }
 });
