@@ -50,11 +50,11 @@
     </div>
   {{else}}
     <div class="total panel-heading">
-      共收到 <b>12</b> 条回复
+      共收到 <b>{{model.replies_count}}</b> 条回复
     </div>
     <div class="items panel-body">
       {{#each model.replies as |reply|}}
-        <div>{{{reply.body_html}}}</div>
+        {{topics-show-reply reply=reply}}
       {{/each}}
     </div>
   {{/if}}

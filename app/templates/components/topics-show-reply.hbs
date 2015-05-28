@@ -1,0 +1,26 @@
+<div class="avatar">
+  <a href="/upyun">
+    <img class="media-object avatar-48" src={{reply.user.avatar_url}}
+         alt={{reply.user.id}}>
+  </a>
+</div>
+<div class="infos">
+  <div class="info">
+        <span class="name">
+          <a data-name="又拍云存储" href="/upyun">{{reply.user.login}}</a>
+        </span> ·
+        <span class="time">
+          <a class="reply-floor" id="reply-{{reply.id}}" {{action 'scrollToit' reply}}>#{{reply.id}}</a> ·
+          <abbr class="timeago" title="2015-05-27T12:04:16+08:00">1 天前</abbr>
+        </span>
+        <span class="opts pull-right">
+            <a title="喜欢" data-count="0" data-state="" data-type="Reply" data-id="260638" class="likeable " href="#"><i
+                class="fa fa-heart-o"></i> <span>喜欢</span></a>
+            <a class="edit fa fa-pencil" data-uid="1394" title="修改回帖" href="#"></a>
+            <a data-floor="12" data-login="upyun" title="回复此楼" class="btn-reply fa fa-mail-reply" href="#"></a>
+        </span>
+  </div>
+  <div class="markdown">
+    {{{reply.body_html}}}
+  </div>
+</div>

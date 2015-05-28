@@ -32,8 +32,8 @@ body {
         }
       }
 
-      li.active {
-        a {
+      li {
+        a.active {
           color: $rubyColor !important;
           background-color: transparent !important;
           border-bottom: 3px solid $rubyColor;
