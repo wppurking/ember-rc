@@ -23,10 +23,12 @@
                 <a class="node" href="/topics/{{topic.node_id}}">{{topic.node_name}}</a>
                 •
                 <a data-name="" href="#">{{topic.user.login}}</a>
-                <span class="hidden-mobile">
-                •
-                最后由 <a href="#">{{topic.last_reply_user_login}}</a> 于 {{topic.replied_at}}回复
-                </span>
+                {{#if topic.last_reply_user_login}}
+                  <span class="hidden-mobile">
+                  •
+                  最后由 <a href="#">{{topic.last_reply_user_login}}</a> 于 {{topic.replied_at}}回复
+                  </span>
+                {{/if}}
               </div>
             </div>
             <div class="count media-right">
@@ -37,7 +39,22 @@
       </div>
 
       <div class="panel-footer">
-        <ul class="pagination"><li class="prev previous_page disabled"><a href="#">← 上一页</a></li> <li class="active"><a rel="start" href="/topics?page=1">1</a></li> <li><a rel="next" href="/topics?page=2">2</a></li> <li><a href="/topics?page=3">3</a></li> <li><a href="/topics?page=4">4</a></li> <li><a href="/topics?page=5">5</a></li> <li class="disabled"><a href="#">…</a></li> <li><a href="/topics?page=99">99</a></li> <li><a href="/topics?page=100">100</a></li> <li class="next next_page "><a rel="next" href="/topics?page=2">下一页 →</a></li></ul>
+        <ul class="pagination">
+          <li class="prev previous_page disabled"><a href="#">← 上一页(page:{{page}})</a></li>
+          <li class="active">
+            {{#link-to 'topics' (query-params page=1)}}1{{/link-to}}
+          </li>
+          <li>
+            {{#link-to 'topics' (query-params page=2)}}2{{/link-to}}
+          </li>
+          <li><a href="/topics?page=3">3</a></li>
+          <li><a href="/topics?page=4">4</a></li>
+          <li><a href="/topics?page=5">5</a></li>
+          <li class="disabled"><a href="#">…</a></li>
+          <li><a href="/topics?page=99">99</a></li>
+          <li><a href="/topics?page=100">100</a></li>
+          <li class="next next_page "><a rel="next" href="/topics?page=2">下一页 →</a></li>
+        </ul>
       </div>
 
 
