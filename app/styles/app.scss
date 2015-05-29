@@ -1,3 +1,8 @@
 @import "bootstrap_imports";
-@import "application";
-@import "topics/show";
+
+body {
+  // 导航栏
+  padding-top: 70px;
+}
+
+@import "topics";
