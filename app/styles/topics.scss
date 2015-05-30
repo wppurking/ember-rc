@@ -5,6 +5,18 @@
   }
 }
 
+.panel-footer {
+  .pagination {
+    margin: 0;
+  }
+}
+
+.no-result {
+  text-align: center;
+  color: #aaa;
+  padding-bottom: 20px;
+}
+
 .header {
   header.navbar {
     background-color: white;
@@ -40,15 +52,6 @@
   }
 }
 
-.topics {
-
-  .panel-footer {
-    .pagination {
-      margin: 0;
-    }
-  }
-}
-
 .topic {
   padding: 10px 15px;
   min-height: 68px;
@@ -76,7 +79,6 @@
 
   .count {
     padding-top: 12px;
-
 
     a {
       padding: 2px 12px;

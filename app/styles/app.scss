@@ -1,8 +1,13 @@
 @import "bootstrap_imports";
+@import "topics";
 
-body {
-  // 导航栏
-  padding-top: 70px;
+.header {
+  .navbar-inverse {
+    border-color: $lightGray;
+  }
 }
 
-@import "topics";
+img.emoji {
+  width: 20px;
+  height: 20px;
+}

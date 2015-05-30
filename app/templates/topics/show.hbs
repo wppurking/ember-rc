@@ -43,20 +43,27 @@
   </div>
 </div>
 
-<div id="replies" class="panel panel-default" data-last-floor="12">
-  {{#if isLoadingTopics}}
-    <div class="total panel-heading">
-      Loading...
+{{#if isLoadingTopics}}
+  <div class="total panel-heading">
+    Loading...
+  </div>
+{{else}}
+  {{#if ishaveReplies}}
+    <div id="replies" class="panel panel-default">
+      <div class="total panel-heading">
+        共收到 <b>{{model.replies_count}}</b> 条回复
+      </div>
+      <div class="items panel-body">
+        {{#each pagedReplies as |reply i|}}
+          {{topics-show-reply reply=reply num=i}}
+        {{/each}}
+      </div>
+
+      {{paginate-toolbar next="nextPage" prev="prevPage" route='topics.show' totalCount=model.replies_count}}
     </div>
   {{else}}
-    <div class="total panel-heading">
-      共收到 <b>{{model.replies_count}}</b> 条回复
-    </div>
-    <div class="items panel-body">
-      {{#each model.replies as |reply i|}}
-        {{topics-show-reply reply=reply num=i}}
-      {{/each}}
+    <div class="no-result">
+      暂无回复。
     </div>
   {{/if}}
-  <div class="panel-footer clearfix"></div>
-</div>
+{{/if}}

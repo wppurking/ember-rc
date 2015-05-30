@@ -25,8 +25,15 @@ export default DS.ActiveModelSerializer.extend(DS.EmbeddedRecordsMixin, {
   normalizePayload(preload) {
     if(preload['topic']) {
       var topic = preload['topic'];
+      var replies_count = topic['replies_count'];
+      if(Ember.isBlank(replies_count) || replies_count < 20) replies_count = 20;
+
+      // ruby-china api 限制最多 100
+      if(replies_count > 100) replies_count = 100;
+
       topic.links = {
-        replies: `replies.json`
+        // 这个回复在这里最好一次性取出, 做本地分页.
+        replies: `replies.json?limit=${replies_count}`
       };
       console.log(preload);
     }

@@ -1,0 +1,17 @@
+<div class="panel-footer clearfix">
+  <ul class="pagination">
+    <li class="prev previous_page" {{action 'prevPage'}}>
+      <a href="#">← 上一页</a>
+    </li>
+
+    {{#each pages as |page|}}
+      {{#link-to attrs.route (query-params page=page) tagName='li'}}
+        <a href='#'>{{page}}</a>
+      {{/link-to}}
+    {{/each}}
+
+    <li class="next next_page" {{action 'nextPage'}}>
+      <a rel="next" href="/topics/25749?page=2#replies">下一页 →</a>
+    </li>
+  </ul>
+</div>
