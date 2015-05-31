@@ -19,7 +19,7 @@ export default Ember.Component.extend({
       this.sendAction('next');
     },
     prevPage: function() {
-      this.sendAction('prev')
+      this.sendAction('prev');
     }
   }
 });

@@ -14,14 +14,14 @@ export default Ember.Controller.extend({
   pages: function() {
     var distance = 2;
     var start = this.get('page') - distance;
-    if(start < 1) start = 1;
+    if(start < 1) { start = 1; }
     var end = this.get('page') + distance;
     var links = [];
     for(var i = start; i <= end; i++) {
       links.push(i);
     }
     // 检查是否有第一页
-    if(start != 1) links.unshift(1);
+    if(start !== 1) { links.unshift(1); }
 
     return links;
   }.property('page'),

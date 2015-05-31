@@ -26,10 +26,10 @@ export default DS.ActiveModelSerializer.extend(DS.EmbeddedRecordsMixin, {
     if(preload['topic']) {
       var topic = preload['topic'];
       var replies_count = topic['replies_count'];
-      if(Ember.isBlank(replies_count) || replies_count < 20) replies_count = 20;
+      if(Ember.isBlank(replies_count) || replies_count < 20) { replies_count = 20; }
 
       // ruby-china api 限制最多 100
-      if(replies_count > 100) replies_count = 100;
+      if(replies_count > 100) { replies_count = 100; }
 
       topic.links = {
         // 这个回复在这里最好一次性取出, 做本地分页.
