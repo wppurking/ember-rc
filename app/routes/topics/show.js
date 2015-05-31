@@ -35,6 +35,25 @@ export default Ember.Route.extend({
     // --|| 我多么想有一个 API 能够自动调用 hasMany 的 ajax...
 
     this._super(controller, model);
+  },
+
+  // 重置页面参数的方法一: 直接利用 ember 提供的 resetController hook
+  resetController(controller, isExiting, transition) {
+    if(isExiting) {
+      controller.set('page', 1);
+    }
   }
+
+
+  /* 重置页面参数的方法二: 使用 didTransition 这个 route 进入事件来进行清空 controller
+  actions: {
+    // 在每次 route 进入的时候, 需要将内页的 page 参数重置
+    didTransition() {
+      if(this.controller) {
+        this.controller.set('page', 1);
+      }
+    }
+  }
+  */
 
 });
