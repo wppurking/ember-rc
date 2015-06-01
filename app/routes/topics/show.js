@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import SR from 'ember-rc/mixins/scroll-reset';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(SR, {
   // topic.show 内的 replies 分页不需要历史
   queryParams: {
     page: {
@@ -38,7 +39,7 @@ export default Ember.Route.extend({
   },
 
   // 重置页面参数的方法一: 直接利用 ember 提供的 resetController hook
-  resetController(controller, isExiting, transition) {
+  resetController(controller, isExiting) {
     if(isExiting) {
       controller.set('page', 1);
     }

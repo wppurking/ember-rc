@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import SR from 'ember-rc/mixins/scroll-reset';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(SR, {
   // 在 Route 中的 queryParams 是配置
   queryParams: {
     page: {
