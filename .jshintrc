@@ -4,6 +4,7 @@
     "window",
     "-Promise",
     "Ember",
+    "NProgress",
     "$"
   ],
   "browser": true,
