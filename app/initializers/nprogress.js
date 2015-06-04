@@ -2,7 +2,7 @@ export function initialize(/* container, application */) {
   // application.inject('route', 'foo', 'service:foo');
   console.log('为 document 添加上 ajax 进度条. NProgress');
   $(document).ajaxStart(() => {
-    NProgress.set(0.2);
+    NProgress.start();
   }).ajaxStop(() => {
     NProgress.done();
   });

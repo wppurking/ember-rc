@@ -1,8 +1,8 @@
 import DS from 'ember-data';
 
 export default DS.ActiveModelAdapter.extend({
-  // use ember-cli proxy
-  //host: 'https://ruby-china.org/api/v3',
+  // use ember-cli proxy: ember s --pr https://ruby-china.org
+  host: 'https://ruby-china.org',
   namespace: 'api/v3',
   headers() {
     return {
