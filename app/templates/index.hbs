@@ -1,1 +1,24 @@
-index 首页还需要调整
+<div class="row">
+  <div class="col-md-12">
+    <div id="sections" class="panel panel-default">
+      <div class="panel-heading">讨论节点分类导航</div>
+      <div class="panel-body">
+        <div class="row node-list">
+          {{#each sections as |sec|}}
+            <div class="node media">
+              <label class="media-left">{{sec.name}}</label>
+          <span class="nodes media-body">
+            {{#each sec.nodes as |node|}}
+              <span class="name">
+                <a title="{{node.name}}" href="#">{{node.name}}</a>
+              </span>
+            {{/each}}
+          </span>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
