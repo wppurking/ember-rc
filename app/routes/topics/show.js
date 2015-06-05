@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import SR from 'ember-rc/mixins/scroll-reset';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(SR, {
   // topic.show 内的 replies 分页不需要历史
   queryParams: {
     page: {
@@ -14,12 +15,13 @@ export default Ember.Route.extend({
   // http://guides.emberjs.com/v1.10.0/routing/asynchronous-routing/
 
   afterModel(model, transition) {
+    var route = this;
     var topic = model.refresh();
     // 如果不是 model, 则一定是 promise 对象
     if(topic !== model) {
       topic.then((m) => {
         if(!Ember.isBlank(transition.queryParams.top) && transition.queryParams.top === 'true') {
-          window.scrollTo(0, 0);
+          route.scrollToTop();
         }
         return m;
       })

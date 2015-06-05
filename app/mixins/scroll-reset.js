@@ -37,5 +37,11 @@ export default Ember.Mixin.create({
     Ember.run.later(() => {
       window.scrollTo(0, jqDom.offset().top);
     }, 100);
+  },
+
+  scrollToTop() {
+    Ember.run.later(() => {
+      window.scrollTo(0, 0);
+    }, 100);
   }
 });
