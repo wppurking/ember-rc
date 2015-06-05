@@ -18,7 +18,7 @@
           </li>
           {{#each pages as |page|}}
             {{#link-to 'topics' (query-params page=page) tagName='li'}}
-              <a href="#">{{page}}</a>
+              <a href="#" {{action 'scrollToTopics'}}>{{page}}</a>
             {{/link-to}}
           {{/each}}
           <li class="disabled">

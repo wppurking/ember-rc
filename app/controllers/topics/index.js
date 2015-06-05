@@ -1,7 +1,8 @@
 import Ember from 'ember';
+import SR from 'ember-rc/mixins/scroll-reset';
 
 // TODO 这里的分页代码, 很多通用的内容都可以抽取到 Ember.Serice 中通用处理.
-export default Ember.Controller.extend({
+export default Ember.Controller.extend(SR, {
   queryParams: ['page'],
   page: 1,
 
@@ -36,8 +37,13 @@ export default Ember.Controller.extend({
 
 
   actions: {
-    turnPage: function(page) {
+    turnPage(page) {
       this.incrementProperty('page', page);
+      this.send('scrollToTopics');
+    },
+
+    scrollToTopics() {
+      this.scrollTo($('.topics'));
     }
   }
 });
