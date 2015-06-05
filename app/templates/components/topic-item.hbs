@@ -5,7 +5,7 @@
 </div>
 <div class="infos media-body">
   <div class="title media-heading">
-    {{#link-to 'topics.show' topic title=topic.title}}{{topic.title}}{{/link-to}}
+    {{#link-to 'topics.show' topic (query-params top=true) title=topic.title}}{{topic.title}}{{/link-to}}
   </div>
   <div class="info">
     <a class="node" href="/topics/{{topic.node_id}}">{{topic.node_name}}</a>

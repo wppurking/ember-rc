@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import SR from 'ember-rc/mixins/scroll-reset';
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(SR, {
   tagName: 'div',
   classNames: 'reply',
   number: function() {
@@ -9,9 +10,7 @@ export default Ember.Component.extend({
 
   actions: {
     scrollToit(reply) {
-      $('html, body').animate({
-        scrollTop: ($("#reply-" + reply.get('id')).offset().top - 70)
-      }, 800);
+      this.scrollTo($("#reply-" + reply.get('id')));
     }
   }
 });

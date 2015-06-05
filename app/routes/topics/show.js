@@ -1,7 +1,6 @@
 import Ember from 'ember';
-import SR from 'ember-rc/mixins/scroll-reset';
 
-export default Ember.Route.extend(SR, {
+export default Ember.Route.extend({
   // topic.show 内的 replies 分页不需要历史
   queryParams: {
     page: {
@@ -14,13 +13,24 @@ export default Ember.Route.extend(SR, {
   // http://discuss.emberjs.com/t/why-is-it-not-possible-to-trigger-the-model-hook-via-link-to-helper/3984/3
   // http://guides.emberjs.com/v1.10.0/routing/asynchronous-routing/
 
-  afterModel(model) {
-    return model.refresh();
+  afterModel(model, transition) {
+    var topic = model.refresh();
+    // 如果不是 model, 则一定是 promise 对象
+    if(topic !== model) {
+      topic.then((m) => {
+        if(!Ember.isBlank(transition.queryParams.top) && transition.queryParams.top === 'true') {
+          window.scrollTo(0, 0);
+        }
+        return m;
+      })
+    }
+    return topic;
   },
 
 
   // 不会触发 beforeModel, model, afterModel 中的 loading 事件
   setupController(controller, model) {
+    var route = this;
     // 加载 links 中的数据. 因为 afterModel 中无法存在两个 promise, 所以将 replies 的加载, 使用 loading 标示符进行处理.
     controller.set('isLoadingTopics', true);
     // 能够让 Topic 与 repliy 之间的 hasMany 关系合作起来, 需要参考:

@@ -22,4 +22,14 @@ export default Ember.Mixin.create({
     }
   }
   */
+
+  /**
+   * 动态 scrollTo 传入的 jQuery Dom 元素
+   */
+  scrollTo(jqDom) {
+    console.log('scrollTo');
+    $('html, body').animate({
+      scrollTop: (jqDom.offset().top - 70)
+    }, 800);
+  }
 });

@@ -1,7 +1,8 @@
 import Ember from 'ember';
+import SR from 'ember-rc/mixins/scroll-reset';
 
-export default Ember.Controller.extend({
-  queryParams: ['page'],
+export default Ember.Controller.extend(SR, {
+  queryParams: ['page', 'top'],
 
   isLoadingTopics: true,
 
@@ -21,13 +22,16 @@ export default Ember.Controller.extend({
   actions: {
     turnPage(page) {
       this.set('page', page);
+      this.scrollTo($('#replies'));
     },
     nextPage() {
       this.incrementProperty('page', 1);
+      this.scrollTo($('#replies'));
     },
     prevPage() {
       if(this.get('page') > 1) {
         this.incrementProperty('page', -1);
+        this.scrollTo($('#replies'));
       }
     }
   }

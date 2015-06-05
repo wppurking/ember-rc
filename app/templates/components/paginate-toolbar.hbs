@@ -6,7 +6,7 @@
 
     {{#each pages as |page|}}
       {{#link-to attrs.route (query-params page=page) tagName='li'}}
-        <a href='#'>{{page}}</a>
+        <a href='#' {{action 'scrollReplies'}}>{{page}}</a>
       {{/link-to}}
     {{/each}}
 
