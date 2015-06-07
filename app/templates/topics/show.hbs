@@ -6,19 +6,19 @@
       <div class="info">
         <a class="node" href="/topics/node{{model.node_id}}">{{model.node_name}}</a>
         ·
-        <a href="/etnl">{{model.user.login}}</a>
+        <a href="#">{{model.user.login}}</a>
         ·
-        于 <abbr class="timeago" title="2015-05-25T13:59:28+08:00">1 天前</abbr>发布
+        于 <abbr class="timeago" title="{{model.created_at}}">{{time-in-words model.created_at}}</abbr>发布
         ·
         最后由
-        <a data-name="imlcl" href="/imlcl">imlcl</a> 于 <abbr class="timeago" title="2015-05-27T01:24:55+08:00">
-        2 小时前</abbr>回复
+        <a href="#">{{model.last_reply_user_login}}</a> 于 <abbr class="timeago" title="{{model.replied_at}}">
+        {{time-in-words model.replied_at}}</abbr>回复
         ·
         {{model.hits}} 次阅读
       </div>
     </div>
     <div class="avatar media-right">
-      <a href="/etnl">
+      <a href="#">
         <img class="media-object avatar-48" src="{{model.user.avatar_url}}" alt="{{model.user.id}}">
       </a>
     </div>
