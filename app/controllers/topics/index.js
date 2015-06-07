@@ -37,7 +37,7 @@ export default Ember.Controller.extend(SR, {
 
 
   actions: {
-    turnPage(page) {
+    plusPage(page) {
       this.incrementProperty('page', page);
       this.send('scrollToTopics');
     },

@@ -13,7 +13,7 @@
 
       <div class="panel-footer">
         <ul class="pagination">
-          <li class="prev previous_page {{prevDisabled}}" {{action 'turnPage' -1}}>
+          <li class="prev previous_page {{prevDisabled}}" {{action 'plusPage' -1}}>
             <a href="#">← 上一页</a>
           </li>
           {{#each pages as |page|}}
@@ -24,7 +24,7 @@
           <li class="disabled">
             <a href="#">...</a>
           </li>
-          <li class="next next_page" {{action 'turnPage' 1}}>
+          <li class="next next_page" {{action 'plusPage' 1}}>
             <a href="#">下一页 →</a>
           </li>
         </ul>

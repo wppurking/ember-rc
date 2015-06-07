@@ -20,7 +20,7 @@ export default Ember.Controller.extend(SR, {
 
 
   actions: {
-    turnPage(page) {
+    plusPage(page) {
       this.set('page', page);
       this.scrollTo($('#replies'));
     },
