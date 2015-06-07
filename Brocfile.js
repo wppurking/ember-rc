@@ -22,6 +22,15 @@ var app = new EmberApp();
 app.import('vendor/nprogress.css');
 
 
+// Bootstrap Glyphicons 引入:
+// * http://stackoverflow.com/questions/23349959/recommended-way-to-include-bootstrap-library-in-ember-js-ember-cli-app
+['eot', 'ttf', 'svg', 'woff', 'woff2'].forEach(function(sufix) {
+  app.import("bower_components/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular." + sufix, {
+    destDir: 'fonts/bootstrap'
+  });
+});
+
+
 app.import('bower_components/bootstrap-sass/assets/javascripts/bootstrap.js');
 app.import('bower_components/nprogress/nprogress.js');
 
