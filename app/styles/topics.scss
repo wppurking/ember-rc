@@ -17,41 +17,6 @@
   padding-bottom: 20px;
 }
 
-.header {
-  header.navbar {
-    background-color: white;
-
-    .navbar-brand {
-      color: #333 !important;
-      font-weight: bold;
-
-      b {
-        color: $rubyColor;
-      }
-    }
-
-    ul {
-      li {
-        a {
-          &:hover {
-            color: $rubyColor !important;
-          }
-        }
-      }
-
-      li {
-        a.active {
-          color: $rubyColor !important;
-          background-color: transparent !important;
-          border-bottom: 3px solid $rubyColor;
-        }
-      }
-    }
-    // end ul
-
-  }
-}
-
 .topic {
   padding: 10px 15px;
   min-height: 68px;
