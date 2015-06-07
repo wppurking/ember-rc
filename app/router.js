@@ -11,7 +11,7 @@ Router.map(function() {
   });
 
   this.route('nodes', function() {
-    this.route('show', {path: '/:node_id'})
+    this.route('show', {path: '/:node_id'});
   });
 });
 

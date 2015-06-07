@@ -27,7 +27,7 @@ export default Ember.Route.extend({
         sectionMap[section_id] = {
           name: item.get('section_name'),
           nodes: [item]
-        }
+        };
       } else {
         sectionMap[section_id]['nodes'].push(item);
       }
