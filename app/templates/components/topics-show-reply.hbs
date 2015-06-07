@@ -10,7 +10,7 @@
         </span> ·
         <span class="time">
           <a class="reply-floor" id="reply-{{reply.id}}" {{action 'scrollToit' reply}}>#{{number}}</a> ·
-          <abbr class="timeago" title="2015-05-27T12:04:16+08:00">1 天前</abbr>
+          <abbr class="timeago" title="{{reply.updated_at}}">{{time-in-words reply.updated_at}}</abbr>
         </span>
         <span class="opts pull-right">
             <a title="喜欢" data-count="0" data-state="" data-type="Reply" data-id="260638" class="likeable " href="#"><i

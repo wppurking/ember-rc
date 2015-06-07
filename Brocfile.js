@@ -24,6 +24,9 @@ app.import('vendor/nprogress.css');
 
 app.import('bower_components/bootstrap-sass/assets/javascripts/bootstrap.js');
 app.import('bower_components/nprogress/nprogress.js');
+
 app.import('bower_components/moment/moment.js');
+app.import('bower_components/moment/locale/zh-cn.js');
+
 
 module.exports = app.toTree();

@@ -11,9 +11,14 @@
   }
 }
 
+abbr.timeago {
+  border-bottom: 0;
+  cursor: text;
+}
+
 .no-result {
   text-align: center;
-  color: #aaa;
+  color: $gray;
   padding-bottom: 20px;
 }
 
@@ -28,7 +33,7 @@
 
   .info {
     font-size: 12px;
-    color: #aaa;
+    color: $gray;
     margin-top: 10px;
 
     a {
@@ -53,7 +58,7 @@
     }
 
     .state-true {
-      background-color: #AAA;
+      background-color: $gray;
     }
 
     .state-false {
@@ -65,6 +70,7 @@
 .topic-detail {
   .media-heading {
     font-size: 24px;
+    color: #333;
   }
 
   .info {
@@ -95,8 +101,10 @@
 
       .info {
         font-size: 12px;
+        color: $gray;
 
         .reply-floor {
+          color: #7AA87A;
           cursor: pointer;
         }
 

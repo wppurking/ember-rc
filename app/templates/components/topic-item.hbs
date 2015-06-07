@@ -14,7 +14,7 @@
     {{#if topic.last_reply_user_login}}
       <span class="hidden-mobile">
         •
-        最后由 <a href="#">{{topic.last_reply_user_login}}</a> 于 {{topic.replied_at}}回复
+        最后由 <a href="#">{{topic.last_reply_user_login}}</a> 于 {{time-in-words topic.replied_at}}回复
         </span>
     {{/if}}
   </div>
