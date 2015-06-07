@@ -32,3 +32,16 @@
 
   }
 }
+
+.navbar-inverse {
+
+  .navbar-toggle {
+    &:hover {
+      background-color: #ddd;
+    }
+
+    .icon-bar {
+      background-color: #888;
+    }
+  }
+}
