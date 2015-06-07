@@ -13,7 +13,8 @@
     "loader.js": "ember-cli/loader.js#3.2.0",
     "qunit": "~1.17.1",
     "nprogress": "~0.2.0",
-    "moment": "~2.10"
+    "moment": "~2.10",
+    "marked": "~0.3.3"
   },
   "devDependencies": {
     "bootstrap-sass": "~3.3.4"

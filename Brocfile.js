@@ -28,5 +28,7 @@ app.import('bower_components/nprogress/nprogress.js');
 app.import('bower_components/moment/moment.js');
 app.import('bower_components/moment/locale/zh-cn.js');
 
+app.import('bower_components/marked/marked.min.js');
+
 
 module.exports = app.toTree();
