@@ -2,15 +2,19 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model() {
-    return this.store.find('node');
+    return Ember.RSVP.hash({
+      nodes: this.store.find('node'),
+      excellent: this.store.find('topic', {type: 'excellent'})
+    });
   },
 
-  setupController(controller, models) {
-    var sectionMap = this.splitSection(models);
-    console.log(sectionMap);
+  setupController(controller, modelHash) {
+    var sectionMap = this.splitSection(modelHash['nodes']);
     controller.set('sectionMap', sectionMap);
+    controller.set('excellentTopics', modelHash['excellent']);
 
-    this._super(controller, models);
+    // 让要关联的 controller 下使用 model 获取的就是 nodes
+    this._super(controller, modelHash['nodes']);
   },
 
   // 将 nodes 按照 section id 切分
