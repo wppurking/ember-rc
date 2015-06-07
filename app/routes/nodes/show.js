@@ -16,11 +16,18 @@ export default Ember.Route.extend({
 
   model(params) {
     this.set('page', params.page);
-    return this.store.find('topic', {node_id: params.node_id, offset: this.get('offset')});
+    return Ember.RSVP.hash({
+      topics: this.store.find('topic', {node_id: params.node_id, offset: this.get('offset')}),
+      node: this.store.all('node').get('length') > 0 ? this.store.find('node', params.node_id) : this.store.findAll('node').then((nodes) => {
+        return nodes.findBy('id', params.node_id);
+      })
+    });
   },
 
-  setupController(controller, model) {
+  setupController(controller, modelHash) {
     controller.set('limit', this.get('limit')).set('offset', this.get('offset'));
-    this._super(controller, model);
+
+    controller.set('topics', modelHash['topics']);
+    this._super(controller, modelHash['node']);
   }
 });

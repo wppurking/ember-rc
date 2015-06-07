@@ -1,1 +1,51 @@
-hahaha
+<div class="row">
+
+  <div class="col-md-9">
+
+    <div class="topics panel panel-default">
+      <div class="panel-heading">
+        <div class="node-info">
+          <div class="name">
+            <strong>{{model.name}}</strong>
+            <span class="total">共有 {{model.topics_count}} 个讨论主题</span>
+            <div class="pull-right"></div>
+          </div>
+          <div class="summary">
+            <p>{{model.summary}}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-body">
+        {{#each topics as |topic|}}
+          {{topic-item topic=topic class='topic media'}}
+        {{/each}}
+      </div>
+
+      <div class="panel-footer">
+        <ul class="pagination">
+          <li class="prev previous_page {{prevDisabled}}" {{action 'plusPage' -1}}>
+            <a href="#">← 上一页</a>
+          </li>
+          {{#each pages as |page|}}
+            {{#link-to 'nodes.show' (query-params page=page) tagName='li'}}
+              <a href="#" {{action 'scrollToTopics'}}>{{page}}</a>
+            {{/link-to}}
+          {{/each}}
+          <li class="disabled">
+            <a href="#">...</a>
+          </li>
+          <li class="next next_page" {{action 'plusPage' 1}}>
+            <a href="#">下一页 →</a>
+          </li>
+        </ul>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    Node Slider Bar
+  </div>
+</div>

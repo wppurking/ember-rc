@@ -11,23 +11,6 @@ export default Ember.Controller.extend(SR, {
     return this.get('page') > 1 ? '' : 'disabled';
   }.property('page'),
 
-  // 能够选择的中间的 links
-  pages: function() {
-    var distance = 2;
-    var start = this.get('page') - distance;
-    if(start < 1) { start = 1; }
-    var end = this.get('page') + distance;
-    var links = [];
-    for(var i = start; i <= end; i++) {
-      links.push(i);
-    }
-    // 检查是否有第一页
-    if(start !== 1) { links.unshift(1); }
-
-    return links;
-  }.property('page'),
-
-
   last_actived: function() {
     console.log('controller.last_actived trigger. offset:' + this.get('offset') + "::offsetEnd:" + this.get('limit'));
     // this.model 代表, route 中一次请求后, 设置到 controller 中的 model.
@@ -38,7 +21,7 @@ export default Ember.Controller.extend(SR, {
 
   actions: {
     plusPage(page) {
-      this.incrementProperty('page', page);
+      this._super(page);
       this.send('scrollToTopics');
     },
 

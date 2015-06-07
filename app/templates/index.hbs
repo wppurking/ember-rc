@@ -26,7 +26,7 @@
           <span class="nodes media-body">
             {{#each sec.nodes as |node|}}
               <span class="name">
-                {{#link-to 'nodes.show' node title=node.name}}{{node.name}}{{/link-to}}
+                {{#link-to 'nodes.show' node.id title=node.name}}{{node.name}}{{/link-to}}
               </span>
             {{/each}}
           </span>
