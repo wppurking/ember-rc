@@ -34,6 +34,7 @@
 }
 
 .navbar-inverse {
+  border-color: $lightGray;
 
   .navbar-toggle {
     &:hover {
@@ -42,6 +43,14 @@
 
     .icon-bar {
       background-color: #888;
+    }
+  }
+
+  .navbar-nav {
+    li {
+      a:focus {
+        color: $gray;
+      }
     }
   }
 }
