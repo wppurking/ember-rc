@@ -25,7 +25,7 @@ You will need the following things properly installed on your computer.
 * Visit your app at [http://localhost:4200](http://localhost:4200).
 
 ## Demo on Github Pages
-* 已经将 Demo 部署在 Github Pages 上. [Ember-RC](wppurking.github.io/ember-rc/)
+* 已经将 Demo 部署在 Github Pages 上. [Ember-RC](http://wppurking.github.io/ember-rc)
 * 因为 Github Pages 不会让 Ember.js 捕捉所有 URL 请求, 所以无法直接访问 `<host>/topics` 等路径访问, 这个需要配置 `nginx` 或者直接试用 `ember s -prod` 来解决.
 ** 所以请不要按 "F5"
 ** 也不要鼠标右键, "打开新窗口""
