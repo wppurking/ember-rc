@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model() {
+    console.log(this.store);
     return Ember.RSVP.hash({
       nodes: this.store.findAll('node'),
       excellent: this.store.find('topic', {type: 'excellent'})

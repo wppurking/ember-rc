@@ -2,13 +2,13 @@
   <div class="panel-heading">社区精华帖</div>
   <div class="row panel-body">
     <div class="col-md-6">
-      {{#each leftTopics as |topic|}}
+      {{#each leftTopics key="id" as |topic|}}
         {{topic-item topic=topic class='topic'}}
       {{/each}}
     </div>
 
     <div class="col-md-6">
-      {{#each rightTopics as |topic|}}
+      {{#each rightTopics key="id" as |topic|}}
         {{topic-item topic=topic class='topic'}}
       {{/each}}
     </div>
@@ -20,11 +20,11 @@
   <div class="panel-heading">讨论节点分类导航</div>
   <div class="panel-body">
     <div class="row node-list">
-      {{#each sections as |sec|}}
+      {{#each sections key="@guid" as |sec|}}
         <div class="col-md-12 node media">
           <label class="media-left">{{sec.name}}</label>
           <span class="nodes media-body">
-            {{#each sec.nodes as |node|}}
+            {{#each sec.nodes key="id" as |node|}}
               <span class="name">
                 {{#link-to 'nodes.show' node.id title=node.name}}{{node.name}}{{/link-to}}
               </span>

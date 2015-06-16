@@ -4,7 +4,7 @@
       <a href="#">← 上一页</a>
     </li>
 
-    {{#each pages as |page|}}
+    {{#each pages key="@item" as |page|}}
       {{#link-to attrs.route (query-params page=page) tagName='li'}}
         <a href='#' {{action 'scrollReplies'}}>{{page}}</a>
       {{/link-to}}

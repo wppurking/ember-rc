@@ -54,7 +54,10 @@
         共收到 <b>{{model.replies_count}}</b> 条回复
       </div>
       <div class="items panel-body">
-        {{#each pagedReplies as |reply i|}}
+      <!-- TODO each key 的解释: https://github.com/emberjs/ember.js/blob/0ba7856ba1db595eb45689610793d98e6a508bfb/packages/ember-htmlbars/lib/helpers/each.js  [each key] -->
+      <!-- TODO key 的处理: https://github.com/emberjs/ember.js/blob/73acd45cdbed6ad0981263dace24741fb31045d9/packages/ember-htmlbars/lib/utils/decode-each-key.js -->
+      <!-- TODO Ember.guidFor: https://github.com/emberjs/ember.js/blob/4d97d612ebe0841c0d40e57b276c9bc2bf896768/packages/ember-metal/lib/utils.js -->
+        {{#each pagedReplies key="@guid" as |reply i|}}
           {{topics-show-reply reply=reply num=i}}
         {{/each}}
       </div>
