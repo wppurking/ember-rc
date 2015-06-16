@@ -11,7 +11,7 @@
     "start": "ember server --prod",
     "build": "ember build --prod",
     "test": "ember test",
-    "postinstall": "bower install"
+    "postinstall": "bower install --verbose"
   },
   "repository": "",
   "engines": {
