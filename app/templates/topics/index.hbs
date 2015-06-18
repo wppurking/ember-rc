@@ -6,7 +6,7 @@
       <div class="panel-heading"></div>
 
       <div class="panel-body">
-        {{#each last_actived key="id" as |topic|}}
+        {{#each last_actived as |topic|}}
           {{topic-item topic=topic class='topic media'}}
         {{/each}}
       </div>
@@ -16,7 +16,7 @@
           <li class="prev previous_page {{prevDisabled}}" {{action 'plusPage' -1}}>
             <a href="#">← 上一页</a>
           </li>
-          {{#each pages key="@item" as |page|}}
+          {{#each pages as |page|}}
             {{#link-to 'topics' (query-params page=page) tagName='li'}}
               <a href="#" {{action 'scrollToTopics'}}>{{page}}</a>
             {{/link-to}}
