@@ -16,7 +16,7 @@ export default Ember.Route.extend({
 
   model(params) {
     this.set('page', params.page);
-    return this.store.find('topic', {offset: this.get('offset')});
+    return this.store.query('topic', {offset: this.get('offset')});
   },
 
   setupController(controller, model) {
