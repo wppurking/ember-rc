@@ -1,3 +1,8 @@
 #source "https://rubygems.org"
 source "https://ruby.taobao.org"
 
+gem 'sinatra'
+gem 'multi_json'
+gem 'httparty'
+
+
