@@ -9,7 +9,6 @@ export default Ember.Component.extend(SR, {
     for(var i = 1; i <= totalPages; i++) {
       links.push(i);
     }
-    console.log(links);
     return links;
   }.property('attrs.totalCount'),
 

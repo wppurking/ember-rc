@@ -4,10 +4,15 @@
 </div>
 
 <div>
-  <form action="https://ruby-china.org/oauth/token" method="POST">
-    {{input type='hidden' name='grant_type' value='password'}}
+  <form>
     {{input name='username' value=username}}
     {{input name='password' type='password' value=password}}
-    <input type="submit" value="提交">
+    {{#if ajaxing}}
+      <button class="btn btn-primary" disabled="disabled">登陆中</button>
+    {{else}}
+      <button class="btn btn-primary" {{action 'login'}}>登陆</button>
+    {{/if}}
   </form>
+
+  <button class="btn btn-danger" {{action 'hello'}}>Hello Ruby-China?</button>
 </div>
