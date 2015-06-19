@@ -9,5 +9,5 @@ export default DS.Model.extend({
   deleted: DS.attr('boolean'),
 
   topic: DS.belongsTo('topic'),
-  user: DS.belongsTo('user')
+  user: DS.belongsTo('user', {async: false})
 });

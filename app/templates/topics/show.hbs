@@ -54,6 +54,7 @@
         共收到 <b>{{model.replies_count}}</b> 条回复
       </div>
       <div class="items panel-body">
+      <!-- 感叹... 来回变. https://github.com/emberjs/ember.js/pull/11461 -->
         {{#each pagedReplies as |reply i|}}
           {{topics-show-reply reply=reply num=i}}
         {{/each}}

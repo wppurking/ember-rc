@@ -47,7 +47,7 @@ var Topic = DS.Model.extend({
   body: DS.attr('string'),
   body_html: DS.attr('string'),
 
-  user: DS.belongsTo('user'),
+  user: DS.belongsTo('user', {async: false}),
   replies: DS.hasMany('reply', {async: true}),
 
   refresh(force=false) {

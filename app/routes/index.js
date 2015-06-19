@@ -4,7 +4,7 @@ export default Ember.Route.extend({
   model() {
     return Ember.RSVP.hash({
       nodes: this.store.findAll('node'),
-      excellent: this.store.find('topic', {type: 'excellent'})
+      excellent: this.store.query('topic', {type: 'excellent'})
     });
   },
 

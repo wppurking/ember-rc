@@ -4,6 +4,7 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'ember-rc',
     environment: environment,
+    // 产品环境在 /ember-rc 开发/测试环境在 "/"" 根目录
     baseURL: '/ember-rc',
     locationType: 'auto',
     EmberENV: {
@@ -33,6 +34,7 @@ module.exports = function(environment) {
   };
 
   if(environment === 'development') {
+    ENV.baseURL = '/';
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
