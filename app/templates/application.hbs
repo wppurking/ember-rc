@@ -2,3 +2,12 @@
 <div class="container">
   {{outlet}}
 </div>
+
+<div>
+  <form action="https://ruby-china.org/oauth/token" method="POST">
+    {{input type='hidden' name='grant_type' value='password'}}
+    {{input name='username' value=username}}
+    {{input name='password' type='password' value=password}}
+    <input type="submit" value="提交">
+  </form>
+</div>

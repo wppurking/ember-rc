@@ -18,27 +18,25 @@
           <li>
             {{#link-to 'topics' (query-params page=1)}}社区{{/link-to}}
           </li>
-          <li><a href="/wiki">Wiki</a></li>
-          <li><a href="/jobs">招聘</a></li>
-          <li><a href="/twitter">推文</a></li>
-          <li><a href="/sites">酷站</a></li>
+          <li><a target="_blank" href="https://ruby-china.org/wiki">Wiki</a></li>
+          <li><a target="_blank" href="https://ruby-china.org/jobs">招聘</a></li>
+          <li><a target="_blank" href="https://ruby-china.org/twitter">推文</a></li>
+          <li><a target="_blank" href="https://ruby-china.org/sites">酷站</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
           <li class="nav-search hidden-xs">
-            <form class="navbar-form form-search" action="/search" method="GET">
-              <div class="form-group">
-                <input class="form-control" name="q" type="text" value="" placeholder="搜索本站内容">
-              </div>
-              <i class="fa btn-search fa-search"></i>
-              <i class="fa btn-close fa-times-circle"></i>
-            </form>
+            <a href='#' {{action 'login'}}>登陆</a>
           </li>
           <li class="notification-count">
-            <a href="/notifications" class="" title="通知"><i class="fa fa-bell"></i><span class="count">0</span></a>
+            <a href="https://ruby-china.org/notifications" class="" title="通知">
+              <i class="fa fa-bell"></i>
+              <span class="count">0</span></a>
           </li>
         </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
   </nav>
 </div>
