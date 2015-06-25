@@ -6,6 +6,9 @@ export default Ember.Controller.extend({
   password: '132456',
 
   ajaxing: false,
+  isLogin: function() {
+    return this.auth.isLogin();
+  }.property('auth.authToken'),
 
   reset() {
     this.set('password', '');
@@ -27,6 +30,10 @@ export default Ember.Controller.extend({
             controller.reset();
           });
       }
+    },
+
+    logout() {
+      this.auth.logout();
     },
 
 

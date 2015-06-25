@@ -7,10 +7,19 @@
   <form>
     {{input name='username' value=username}}
     {{input name='password' type='password' value=password}}
-    {{#if ajaxing}}
-      <button class="btn btn-primary" disabled="disabled">登陆中</button>
+
+    {{#if isLogin}}
+      {{#if ajaxing}}
+        <button class="btn btn-primary" disabled="disabled">登出中</button>
+      {{else}}
+        <button class="btn btn-danger" {{action 'logout'}}>登出</button>
+      {{/if}}
     {{else}}
-      <button class="btn btn-primary" {{action 'login'}}>登陆</button>
+      {{#if ajaxing}}
+        <button class="btn btn-primary" disabled="disabled">登陆中</button>
+      {{else}}
+        <button class="btn btn-primary" {{action 'login'}}>登陆</button>
+      {{/if}}
     {{/if}}
   </form>
 

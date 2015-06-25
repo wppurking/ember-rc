@@ -16,15 +16,14 @@ export default Ember.Service.extend({
 
   /**
    * 登陆
-   * @retun 返回 jqXhr 的 promise 对象
+   * @retun 返回 Ember.RSVP.Promise 对象
    */
   login(user, paswd) {
     var service = this;
     if(this.reloadFromStoreage()) {
       //service.registerTokenToAjaxHeader();
-      return new Ember.RSVP.Promise(function() {
-        service.registerTokenToAjaxHeader();
-      });
+      service.registerTokenToAjaxHeader();
+      return new Ember.RSVP.resolve(this.get('authToken'));
     } else if(Ember.isPresent(user) && Ember.isPresent(paswd)) {
       return ajax(`${EmberRc.login_base_URL}/login`, {
         data: {username: user, password: paswd},
@@ -41,6 +40,15 @@ export default Ember.Service.extend({
   },
 
   /**
+   * 登出
+   */
+  logout() {
+    this.set('authToken', null);
+    localStorage.removeItem('authToken');
+    delete Ember.$.ajaxSetup.beforeSend;
+  },
+
+  /**
    * 持久化 token 进入 localStorage
    */
   persitToken(token) {
@@ -51,23 +59,25 @@ export default Ember.Service.extend({
   reloadFromStoreage() {
     var token = JSON.parse(localStorage.getItem('authToken'));
     this.set('authToken', token);
-    return this.validAuthorization();
+    return this.isLogin();
   },
 
 
   registerTokenToAjaxHeader() {
     var service = this;
-    if(service.validAuthorization()) {
+    if(Ember.isBlank($.ajaxSetup.beforeSend)) {
       Ember.$.ajaxSetup({
         beforeSend(xhr) {
-          xhr.setRequestHeader('Authorization', `${service.get('token_type')} ${service.get('token')}`);
+          if(service.isLogin()) {
+            xhr.setRequestHeader('Authorization', `${service.get('token_type')} ${service.get('token')}`);
+          }
         }
       });
     }
   },
 
-  // 如果不合法, 那么就不需要向 header 上添加 Authorization 信息
-  validAuthorization() {
+  // 是否登录
+  isLogin() {
     return (Ember.isPresent(this.get('token')) && Ember.isPresent(this.get('token_type')));
   },
 
