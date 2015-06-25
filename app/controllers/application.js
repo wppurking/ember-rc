@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ajax from 'ic-ajax';
 
 export default Ember.Controller.extend({
   username: 'wyatt@easya.cc',
@@ -11,13 +12,18 @@ export default Ember.Controller.extend({
     this.set('ajaxing', false);
   },
 
+  init() {
+    this._super();
+    this.auth.login();
+  },
+
   actions: {
     login() {
       var controller = this;
       this.set('ajaxing', true);
       if(this.get('ajaxing')) {
         controller.auth.login(this.get('username'), this.get('password'))
-          .always(()=> {
+          .finally(()=> {
             controller.reset();
           });
       }
@@ -25,10 +31,10 @@ export default Ember.Controller.extend({
 
 
     hello() {
-      $.ajax('https://ruby-china.org/api/v3/hello.json', {method: 'GET'})
-        .done((res) => {
+      ajax('https://ruby-china.org/api/v3/hello.json', {method: 'GET'})
+        .then((res) => {
           alert(JSON.stringify(res));
-        }).fail(() => {
+        }).catch(() => {
           alert('请求需要验证 Toekn, 请求失败.');
         });
     }

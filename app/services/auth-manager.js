@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ajax from 'ic-ajax';
 
 /**
  * 用于处理用户:
@@ -17,32 +18,52 @@ export default Ember.Service.extend({
    * 登陆
    * @retun 返回 jqXhr 的 promise 对象
    */
-    login(user, paswd) {
+  login(user, paswd) {
     var service = this;
-
-    return $.ajax(`${EmberRc.login_base_URL}/login`, {
-      data: {username: user, password: paswd},
-      method: 'POST'
-    }).done((res) => {
-      if(res.code === 200) {
-        service.set('authToken', res);
+    if(this.reloadFromStoreage()) {
+      //service.registerTokenToAjaxHeader();
+      return new Ember.RSVP.Promise(function() {
         service.registerTokenToAjaxHeader();
-      }
-    }).fail((xhr, err) => {
-      console.error(`用户登陆失败, 因为 [${err}]`);
-    });
+      });
+    } else if(Ember.isPresent(user) && Ember.isPresent(paswd)) {
+      return ajax(`${EmberRc.login_base_URL}/login`, {
+        data: {username: user, password: paswd},
+        method: 'POST'
+      }).then((res) => {
+        if(res.code === 200) {
+          service.persitToken(res);
+          service.registerTokenToAjaxHeader();
+        }
+      }).catch((xhr, err) => {
+        console.error(`用户登陆失败, 因为 [${err}]`);
+      });
+    }
+  },
+
+  /**
+   * 持久化 token 进入 localStorage
+   */
+  persitToken(token) {
+    localStorage.setItem('authToken', JSON.stringify(token));
+    this.set('authToken', token);
+  },
+
+  reloadFromStoreage() {
+    var token = JSON.parse(localStorage.getItem('authToken'));
+    this.set('authToken', token);
+    return this.validAuthorization();
   },
 
 
   registerTokenToAjaxHeader() {
     var service = this;
-    Ember.$.ajaxSetup({
-      beforeSend(xhr) {
-        if(service.validAuthorization()) {
+    if(service.validAuthorization()) {
+      Ember.$.ajaxSetup({
+        beforeSend(xhr) {
           xhr.setRequestHeader('Authorization', `${service.get('token_type')} ${service.get('token')}`);
         }
-      }
-    });
+      });
+    }
   },
 
   // 如果不合法, 那么就不需要向 header 上添加 Authorization 信息
