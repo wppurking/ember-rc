@@ -13,6 +13,7 @@ export default Ember.Service.extend({
   // 需要补充 authToken 的持久化功能, 能够在页面刷新后仍然有效.
   // localStorage? Cookie? 暂不确定
   authToken: null,
+  user: null,
 
   /**
    * 登陆
@@ -21,7 +22,6 @@ export default Ember.Service.extend({
   login(user, paswd) {
     var service = this;
     if(this.reloadFromStoreage()) {
-      //service.registerTokenToAjaxHeader();
       service.registerTokenToAjaxHeader();
       return new Ember.RSVP.resolve(this.get('authToken'));
     } else if(Ember.isPresent(user) && Ember.isPresent(paswd)) {
@@ -30,8 +30,9 @@ export default Ember.Service.extend({
         method: 'POST'
       }).then((res) => {
         if(res.code === 200) {
-          service.persitToken(res);
+          this.set('authToken', res);
           service.registerTokenToAjaxHeader();
+          service.pushUsername(user);
         }
       }).catch((xhr, err) => {
         console.error(`用户登陆失败, 因为 [${err}]`);
@@ -44,22 +45,35 @@ export default Ember.Service.extend({
    */
   logout() {
     this.set('authToken', null);
+    this.set('user', null);
     localStorage.removeItem('authToken');
+    localStorage.removeItem('user');
     delete Ember.$.ajaxSetup.beforeSend;
   },
 
   /**
    * 持久化 token 进入 localStorage
+   * 通过 observ 的模式监听两个元素的变化. (需要在页面上调用)
    */
-  persitToken(token) {
-    localStorage.setItem('authToken', JSON.stringify(token));
-    this.set('authToken', token);
+  persitToken: function() {
+    localStorage.setItem('authToken', JSON.stringify(this.get('authToken')));
+    localStorage.setItem('user', JSON.stringify(this.get('user')));
+    return '';
+  }.property('authToken', 'user'),
+
+  pushUsername(user) {
+    var service = this;
+    this.set('user', {login: user});
+    ajax('https://ruby-china.org/api/v3/hello.json')
+      .then((res) => {
+        service.set('user', res['user']);
+      });
   },
 
   reloadFromStoreage() {
-    var token = JSON.parse(localStorage.getItem('authToken'));
-    this.set('authToken', token);
-    return this.isLogin();
+    this.set('authToken', JSON.parse(localStorage.getItem('authToken')));
+    this.set('user', JSON.parse(localStorage.getItem('user')));
+    return this.get('isLogin');
   },
 
 
@@ -68,7 +82,7 @@ export default Ember.Service.extend({
     if(Ember.isBlank($.ajaxSetup.beforeSend)) {
       Ember.$.ajaxSetup({
         beforeSend(xhr) {
-          if(service.isLogin()) {
+          if(service.get('isLogin')) {
             xhr.setRequestHeader('Authorization', `${service.get('token_type')} ${service.get('token')}`);
           }
         }
@@ -77,9 +91,9 @@ export default Ember.Service.extend({
   },
 
   // 是否登录
-  isLogin() {
+  isLogin: function() {
     return (Ember.isPresent(this.get('token')) && Ember.isPresent(this.get('token_type')));
-  },
+  }.property('authToken'),
 
 
   //  --------------- after login -------------------
@@ -89,5 +103,9 @@ export default Ember.Service.extend({
 
   token_type: function() {
     return this.get('authToken.token_type');
-  }.property('authToken')
+  }.property('authToken'),
+
+  username: function() {
+    return this.get('user.login');
+  }.property('user')
 });

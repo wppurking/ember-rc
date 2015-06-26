@@ -8,7 +8,7 @@
     {{input name='username' value=username}}
     {{input name='password' type='password' value=password}}
 
-    {{#if isLogin}}
+    {{#if auth.isLogin}}
       {{#if ajaxing}}
         <button class="btn btn-primary" disabled="disabled">登出中</button>
       {{else}}

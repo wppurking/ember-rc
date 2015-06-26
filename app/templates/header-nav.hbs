@@ -24,16 +24,46 @@
           <li><a target="_blank" href="https://ruby-china.org/sites">酷站</a></li>
         </ul>
 
-        <ul class="nav navbar-nav navbar-right">
-          <li class="nav-search hidden-xs">
-            <a href='#' {{action 'login'}}>登陆</a>
-          </li>
-          <li class="notification-count">
-            <a href="https://ruby-china.org/notifications" class="" title="通知">
-              <i class="fa fa-bell"></i>
-              <span class="count">0</span></a>
-          </li>
-        </ul>
+        {{#if auth.isLogin}}
+          <ul class="nav user-bar navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">{{auth.username}} {{auth.persitToken}} <span class="caret"></span></a>
+              <button class="navbar-toggle" type="button" data-toggle="dropdown" role="button" aria-expanded="false">
+                <span class="sr-only">Toggle</span>
+                <i class="fa fa-reorder"></i>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li>
+                  <a href="#">我的主页</a>
+                </li>
+                <li>
+                  <div class="divider"></div>
+                </li>
+                <li>
+                  <a href="#">个人资料设置</a>
+                </li>
+                <li>
+                  <a href="#">记事本</a>
+                </li>
+                <li>
+                  <a href="#" {{action 'user'}}>我的收藏</a>
+                </li>
+                <li>
+                  <div class="divider"></div>
+                </li>
+                <li>
+                  <a rel="nofollow" href="#" {{action 'logout'}}>退出</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        {{else}}
+          <ul class="nav navbar-nav navbar-right">
+            <li class="nav-search hidden-xs">
+              <a href='#' {{action 'login'}}>登陆</a>
+            </li>
+          </ul>
+        {{/if}}
       </div>
       <!-- /.navbar-collapse -->
     </div>
