@@ -8,6 +8,9 @@ export default Ember.Controller.extend(SR, {
 
   page: 1,
   perPage: 50,
+  isPreview: false,
+
+  replyContent: '',
 
   ishaveReplies: function() {
     return this.model.get('replies.length') > 0;
@@ -33,6 +36,11 @@ export default Ember.Controller.extend(SR, {
         this.incrementProperty('page', -1);
         this.scrollTo($('#replies'));
       }
+    },
+
+    togglePreview() {
+      Ember.$(event.target).parent().toggleClass('active');
+      this.toggleProperty('isPreview');
     }
   }
 
