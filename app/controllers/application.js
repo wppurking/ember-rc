@@ -6,6 +6,10 @@ export default Ember.Controller.extend({
   password: '132456',
 
   ajaxing: false,
+  isShowLogin: false,
+  showLoginClass: function() {
+    return this.get('isShowLogin') ? 'show-login' : '';
+  }.property('isShowLogin'),
 
   reset() {
     this.set('password', '');
@@ -17,7 +21,15 @@ export default Ember.Controller.extend({
     this.auth.login();
   },
 
+
+
   actions: {
+
+    toggleLogin(form) {
+      this.toggleProperty('isShowLogin');
+      Ember.$('#login-form').css('top', 40).css('left', -130);
+    },
+
     login() {
       var controller = this;
       this.set('ajaxing', true);
