@@ -1,7 +1,5 @@
 import Ember from 'ember';
 
-export function markDown(params/*, hash*/) {
+export default Ember.Helper.helper(function(params, hash) {
   return marked(params[0]);
-}
-
-export default Ember.HTMLBars.makeBoundHelper(markDown);
+});
