@@ -50,7 +50,26 @@ export default Ember.Controller.extend(SR, {
 
     togglePreview(tab) {
       this.set('activeTab', tab);
+    },
+
+    // 多键提交
+    combSubmit() {
+      if(this._isValidCombination(event)) {
+        console.log("创建 Reply 到 Ruby-China API" + this.get('replyContent'));
+      }
     }
+  },
+
+  _hasCorrectModifier(event) {
+    return event.ctrlKey || event.metaKey;
+  },
+  _isCorrectKeyCode: function(keyCode) {
+    return keyCode === 13;
+  },
+  // ref: https://medium.com/the-ember-way/submit-an-ember-textarea-with-command-or-ctrl-enter-a933b4325b3b
+  // 用于处理多个快捷键的 event 处理.
+  _isValidCombination: function(event) {
+    return this._hasCorrectModifier(event) && this._isCorrectKeyCode(event.keyCode);
   }
 
 });
