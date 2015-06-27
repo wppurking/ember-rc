@@ -96,24 +96,27 @@
             <input type="file" id="topic-upload-images" style="display:none">
           </div>
           <ul class="nav nav-pills" style="clear:none;">
-            <li class="edit active">
-              <a href="#" {{action 'togglePreview'}}>编辑/预览</a>
-            </li>
+            {{#each tabs as |tab|}}
+              {{#tab-li tab=tab.action activeTab=activeTab}}
+                <a href="#" {{action 'togglePreview' tab.action}}>{{tab.text}}</a>
+              {{/tab-li}}
+            {{/each}}
           </ul>
         </div>
 
-        <form class="new_reply" id="new_reply" action="/topics/26120/replies" accept-charset="UTF-8" data-remote="true"
+        <form class="new_reply" id="new_reply" action="#" accept-charset="UTF-8" data-remote="true"
               method="post"><input name="utf8" type="hidden" value="✓">
 
-          <div class="form-group">
-            {{#if isPreview}}
+          <div class="form-group tab-content">
+            {{#tab-pane tab='edit' activeTab=activeTab}}
+              {{textarea value=replyContent rows='4' tabindex='1' class='topic-editor form-control'}}
+            {{/tab-pane}}
+
+            {{#tab-pane tab='preview' activeTab=activeTab}}
               <div class="preview markdown">
                 {{{mark-down replyContent}}}
               </div>
-            {{else}}
-              {{textarea value=replyContent rows='4' tabindex='1' class='topic-editor form-control'}}
-            {{/if}}
-
+            {{/tab-pane}}
           </div>
           <div class="submit-buttons">
             <button type="submit" id="reply-button" class="btn btn-primary" tabindex="2">提交回复</button>

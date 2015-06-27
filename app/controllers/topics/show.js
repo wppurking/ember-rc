@@ -8,7 +8,17 @@ export default Ember.Controller.extend(SR, {
 
   page: 1,
   perPage: 50,
-  isPreview: false,
+
+  // --- tab 相关的操作 ---
+  // 拥有的所有 tabs:
+  //  1. 展示 tab 的 li 操作
+  //  2. 给予 tab pane 拥有 action 名字
+  tabs: [
+    {action: 'edit', text: '编辑'},
+    {action: 'preview', text: '预览'}
+  ],
+  // 具体让哪一个 tab pane 激活
+  activeTab: 'edit',
 
   replyContent: '',
 
@@ -38,9 +48,8 @@ export default Ember.Controller.extend(SR, {
       }
     },
 
-    togglePreview() {
-      Ember.$(event.target).parent().toggleClass('active');
-      this.toggleProperty('isPreview');
+    togglePreview(tab) {
+      this.set('activeTab', tab);
     }
   }
 
