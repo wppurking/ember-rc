@@ -32,6 +32,8 @@ export default Ember.Route.extend(SR, {
 
   // 不会触发 beforeModel, model, afterModel 中的 loading 事件
   setupController(controller, model) {
+    // 每次进入 show 都情况原来的 replyContent
+    controller.set('replyContent', '');
     // 加载 links 中的数据. 因为 afterModel 中无法存在两个 promise, 所以将 replies 的加载, 使用 loading 标示符进行处理.
     controller.set('isLoadingTopics', true);
     // 能够让 Topic 与 repliy 之间的 hasMany 关系合作起来, 需要参考:

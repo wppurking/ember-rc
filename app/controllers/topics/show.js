@@ -30,7 +30,7 @@ export default Ember.Controller.extend(SR, AjaxProcessing, {
   pagedReplies: function() {
     var offset = (this.get('page') - 1) * this.get('perPage');
     return this.model.get('replies').slice(offset, (offset + this.get('perPage')));
-  }.property('page', 'model'), // 这个方法, 每当 page 和传入的 model 变化, 都需要重新计算
+  }.property('page', 'model', 'model.replies.@each'), // 这个方法, 每当 page 和传入的 model 变化, 都需要重新计算
 
 
   actions: {
@@ -55,9 +55,13 @@ export default Ember.Controller.extend(SR, AjaxProcessing, {
 
     // 多键提交
     combSubmit() {
+      var controller = this;
       if(this._isValidCombination(event)) {
         this.aroundProcess(() => {
-          console.log("创建 Reply 到 Ruby-China API" + this.get('replyContent'));
+          //topics/:id/replies.json
+          controller.get('model').postReply(controller.get('replyContent')).then(() => {
+            controller.set('replyContent', '');
+          });
         });
       }
 
