@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import SR from 'ember-rc/mixins/scroll-reset';
+import AjaxProcessing from 'ember-rc/mixins/ajax-processing';
 
-export default Ember.Controller.extend(SR, {
+export default Ember.Controller.extend(SR, AjaxProcessing, {
   queryParams: ['page', 'top'],
 
   isLoadingTopics: true,
@@ -48,15 +49,18 @@ export default Ember.Controller.extend(SR, {
       }
     },
 
-    togglePreview(tab) {
+    selectTab(tab) {
       this.set('activeTab', tab);
     },
 
     // 多键提交
     combSubmit() {
       if(this._isValidCombination(event)) {
-        console.log("创建 Reply 到 Ruby-China API" + this.get('replyContent'));
+        this.aroundProcess(() => {
+          console.log("创建 Reply 到 Ruby-China API" + this.get('replyContent'));
+        });
       }
+
     }
   },
 

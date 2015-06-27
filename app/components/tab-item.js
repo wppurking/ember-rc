@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   classNameBindings: ['isActive:active'],
-  classNames: ['tab-pane'],
+  // 将外部不断改变的元素传递进来
   activeTab: '',
   tab: '',
 
