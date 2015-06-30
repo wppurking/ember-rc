@@ -126,25 +126,3 @@ abbr.timeago {
   }
 }
 
-#reply {
-  .nav-pills a {
-    padding: 3px 15px;
-    border-radius: 0;
-  }
-
-  .topic-editor {
-    border-radius: 0;
-    color: #555;
-  }
-
-  li.edit {
-    background-color: $lightGray;
-  }
-
-  .preview {
-    padding: 10px 10px;
-    border-radius: 0;
-    min-height: 90px;
-  }
-}
-
