@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import SR from 'ember-rc/mixins/scroll-reset';
+import AjaxProcessing from 'ember-rc/mixins/ajax-processing';
 
-export default Ember.Controller.extend(SR, {
+export default Ember.Controller.extend(SR, AjaxProcessing, {
   queryParams: ['page', 'top'],
 
   isLoadingTopics: true,
@@ -29,7 +30,7 @@ export default Ember.Controller.extend(SR, {
   pagedReplies: function() {
     var offset = (this.get('page') - 1) * this.get('perPage');
     return this.model.get('replies').slice(offset, (offset + this.get('perPage')));
-  }.property('page', 'model'), // 这个方法, 每当 page 和传入的 model 变化, 都需要重新计算
+  }.property('page', 'model', 'model.replies.@each'), // 这个方法, 每当 page 和传入的 model 变化, 都需要重新计算
 
 
   actions: {
@@ -48,15 +49,22 @@ export default Ember.Controller.extend(SR, {
       }
     },
 
-    togglePreview(tab) {
+    selectTab(tab) {
       this.set('activeTab', tab);
     },
 
     // 多键提交
     combSubmit() {
+      var controller = this;
       if(this._isValidCombination(event)) {
-        console.log("创建 Reply 到 Ruby-China API" + this.get('replyContent'));
+        this.aroundProcess(() => {
+          //topics/:id/replies.json
+          controller.get('model').postReply(controller.get('replyContent')).then(() => {
+            controller.set('replyContent', '');
+          });
+        });
       }
+
     }
   },
 

@@ -97,9 +97,9 @@
           </div>
           <ul class="nav nav-pills" style="clear:none;">
             {{#each tabs as |tab|}}
-              {{#tab-li tab=tab.action activeTab=activeTab}}
-                <a href="#" {{action 'togglePreview' tab.action}}>{{tab.text}}</a>
-              {{/tab-li}}
+              {{#tab-item tab=tab.action activeTab=activeTab tagName='li'}}
+                <a href="#" {{action 'selectTab' tab.action}}>{{tab.text}}</a>
+              {{/tab-item}}
             {{/each}}
           </ul>
         </div>
@@ -108,21 +108,22 @@
               method="post"><input name="utf8" type="hidden" value="✓">
 
           <div class="form-group tab-content">
-            {{#tab-pane tab='edit' activeTab=activeTab}}
+            {{#tab-item tab='edit' activeTab=activeTab class='tab-pane'}}
               {{textarea value=replyContent rows='4' tabindex='1' class='topic-editor form-control' key-down='combSubmit'}}
-            {{/tab-pane}}
+            {{/tab-item}}
 
-            {{#tab-pane tab='preview' activeTab=activeTab}}
+            {{#tab-item tab='preview' activeTab=activeTab class='tab-pane'}}
               <div class="preview markdown">
                 {{{mark-down replyContent}}}
               </div>
-            {{/tab-pane}}
+            {{/tab-item}}
           </div>
           <div class="submit-buttons">
-            <button type="submit" id="reply-button" class="btn btn-primary" tabindex="2">提交回复</button>
+            {{input type='submit' id='reply-button' disabled=isProcessing class='btn btn-primary' value='提交回复'}}
+
             <span class="help-inline" title="或者 Ctrl + Enter"><kbd>Command</kbd> + <kbd>Enter</kbd></span>
 
-            <div class="pull-right"><a href="/markdown" target="_blank">排版说明</a></div>
+            <div class="pull-right"><a href="https://ruby-china.org/markdown" target="_blank">排版说明</a></div>
           </div>
         </form>
       </div>
