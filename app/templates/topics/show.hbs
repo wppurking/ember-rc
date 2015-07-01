@@ -61,7 +61,7 @@
       </div>
 
       {{#if isHavePages}}
-        {{paginate-toolbar next="nextPage" prev="prevPage" route='topics.show' totalCount=model.replies_count}}
+        {{paginate-toolbar next="nextPage" prev="prevPage" currentPage=page route='topics.show' totalCount=model.replies_count}}
       {{/if}}
     </div>
   {{else}}
