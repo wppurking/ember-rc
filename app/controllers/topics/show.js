@@ -23,9 +23,13 @@ export default Ember.Controller.extend(SR, AjaxProcessing, {
 
   replyContent: '',
 
-  ishaveReplies: function() {
-    return this.model.get('replies.length') > 0;
-  }.property('model', 'page'),
+  isHaveReplies: function() {
+    return this.model.get('replies_count') > 0;
+  }.property('model'),
+
+  isHavePages: function() {
+    return this.model.get('replies_count') > 50;
+  }.property('model'),
 
   pagedReplies: function() {
     var offset = (this.get('page') - 1) * this.get('perPage');

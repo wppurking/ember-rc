@@ -48,7 +48,7 @@
     Loading...
   </div>
 {{else}}
-  {{#if ishaveReplies}}
+  {{#if isHaveReplies}}
     <div id="replies" class="panel panel-default">
       <div class="total panel-heading">
         共收到 <b>{{model.replies_count}}</b> 条回复
@@ -60,7 +60,9 @@
         {{/each}}
       </div>
 
-      {{paginate-toolbar next="nextPage" prev="prevPage" route='topics.show' totalCount=model.replies_count}}
+      {{#if isHavePages}}
+        {{paginate-toolbar next="nextPage" prev="prevPage" route='topics.show' totalCount=model.replies_count}}
+      {{/if}}
     </div>
   {{else}}
     <div class="no-result">
