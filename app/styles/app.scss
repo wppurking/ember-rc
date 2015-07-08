@@ -40,3 +40,8 @@ img.emoji {
   border-radius: 0;
   color: #555;
 }
+
+.topic-editor-new {
+  @extend .topic-editor;
+  min-height: 280px;
+}

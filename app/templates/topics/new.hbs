@@ -52,7 +52,7 @@
 
     <div class="form-group">
       <!-- 这里注意与 reply 的 edit/preview 部分可以整合到一块代码, 抽取到 Component 中. 不同的操作, 通过 key-down 触发的事件来动态确定就好. -->
-      {{textarea value=topicContent rows='20' class='topic-editor form-control closewarning'}}
+      {{ex-text value=topicContent class='topic-editor-new form-control closewarning'}}
 
       <div id="preview" class="markdown form-control" style="display: none;"></div>
     </div>
