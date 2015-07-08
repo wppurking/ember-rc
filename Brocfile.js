@@ -38,6 +38,7 @@ app.import('bower_components/moment/moment.js');
 app.import('bower_components/moment/locale/zh-cn.js');
 
 app.import('bower_components/marked/marked.min.js');
+app.import('bower_components/textarea-autosize/src/jquery.textarea_autosize.js');
 
 
 module.exports = app.toTree();

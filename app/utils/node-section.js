@@ -1,5 +1,4 @@
 export default function nodeSection(nodes) {
-  console.log(nodes);
   // 将 nodes 按照 section id 切分
   // {section_id: {name: section_name, nodes: []}
   var sectionMap = {};
