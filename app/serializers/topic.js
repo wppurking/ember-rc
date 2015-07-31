@@ -4,6 +4,7 @@ import DS from 'ember-data';
 // 3. https://github.com/emberjs/data/blob/master/packages/ember-data/tests/integration/serializers/embedded-records-mixin-test.js
 
 export default DS.ActiveModelSerializer.extend(DS.EmbeddedRecordsMixin, {
+  isNewSerializerAPI: true,
   attrs: {
     user: {embedded: 'always'}
   },
@@ -22,7 +23,12 @@ export default DS.ActiveModelSerializer.extend(DS.EmbeddedRecordsMixin, {
     return this._super(store, type, payload, id);
   },
 
-  normalizePayload(preload) {
+  normalizeFindRecordResponse(store, primaryModelClass, payload, id) {
+    this.loadReplies(payload);
+    return this._super(...arguments);
+  },
+
+  loadReplies(preload) {
     if(preload['topic']) {
       var topic = preload['topic'];
       var replies_count = topic['replies_count'];

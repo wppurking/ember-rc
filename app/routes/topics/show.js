@@ -35,13 +35,14 @@ export default Ember.Route.extend(SR, {
     // 每次进入 show 都情况原来的 replyContent
     controller.set('replyContent', '');
     // 加载 links 中的数据. 因为 afterModel 中无法存在两个 promise, 所以将 replies 的加载, 使用 loading 标示符进行处理.
-    controller.set('isLoadingTopics', true);
+    //controller.set('isLoadingTopics', true);
     // 能够让 Topic 与 repliy 之间的 hasMany 关系合作起来, 需要参考:
     // 1. 测试代码: https://github.com/emberjs/data/blob/ec006005fa4e4be43587e50d45a889f4011fc2ef/packages/ember-data/tests/integration/relationships/has-many-test.js
     // 2. 一个还没有合并的 pull request. https://github.com/emberjs/data/issues/2162
-    model.get('replies').then(()=> {
-      controller.set('isLoadingTopics', false);
-    });
+    console.log(model);
+    //model.get('replies').then(()=> {
+     // controller.set('isLoadingTopics', false);
+    //});
 
     // TODO 这样的 URL, 还要添加上分页需要做下面两件事情
     // 1. 要将 controller 下层传递的 queryParams 传递到这里;

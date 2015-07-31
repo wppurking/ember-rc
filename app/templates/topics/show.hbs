@@ -96,11 +96,13 @@
             <input type="file" id="topic-upload-images" style="display:none">
           </div>
           <ul class="nav nav-pills" style="clear:none;">
-            {{#each tabs as |tab|}}
-              {{#tab-item tab=tab.action activeTab=activeTab tagName='li'}}
-                <a href="#" {{action 'selectTab' tab.action}}>{{tab.text}}</a>
-              {{/tab-item}}
-            {{/each}}
+            {{#tab-item tab='edit' activeTab=activeTab tagName='li'}}
+              <a href="#" {{action 'selectTab' 'edit'}}>编辑</a>
+            {{/tab-item}}
+
+            {{#tab-item tab='preview' activeTab=activeTab tagName='li'}}
+              <a href="#" {{action 'selectTab' 'preview'}}>预览</a>
+            {{/tab-item}}
           </ul>
         </div>
 

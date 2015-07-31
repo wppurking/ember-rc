@@ -4,7 +4,7 @@ import splitSection from 'ember-rc/utils/node-section';
 export default Ember.Controller.extend({
 
   topicContent: '',
-
+  activeTab: 'edit',
 
   selectContent: function() {
     console.log('selectContent');
@@ -14,5 +14,12 @@ export default Ember.Controller.extend({
       sections.push(sectionMap[i]);
     }
     return sections;
-  }.property('model')
+  }.property('model'),
+
+  actions: {
+    selectTab(tab) {
+      this.set('activeTab', tab);
+    }
+  }
+
 });
