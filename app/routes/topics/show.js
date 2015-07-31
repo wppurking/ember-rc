@@ -40,9 +40,9 @@ export default Ember.Route.extend(SR, {
     // 1. 测试代码: https://github.com/emberjs/data/blob/ec006005fa4e4be43587e50d45a889f4011fc2ef/packages/ember-data/tests/integration/relationships/has-many-test.js
     // 2. 一个还没有合并的 pull request. https://github.com/emberjs/data/issues/2162
     console.log(model);
-    //model.get('replies').then(()=> {
-     // controller.set('isLoadingTopics', false);
-    //});
+    model.get('replies').then(()=> {
+      controller.set('isLoadingTopics', false);
+    });
 
     // TODO 这样的 URL, 还要添加上分页需要做下面两件事情
     // 1. 要将 controller 下层传递的 queryParams 传递到这里;
