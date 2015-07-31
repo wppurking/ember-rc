@@ -1,6 +1,7 @@
-import DS from 'ember-data';
+import ActiveModelAdapter from 'active-model-adapter';
 
-export default DS.ActiveModelAdapter.extend({
+
+export default ActiveModelAdapter.extend({
   // use ember-cli proxy: ember s --pr https://ruby-china.org
   host: 'https://ruby-china.org',
   namespace: 'api/v3',

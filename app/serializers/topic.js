@@ -1,29 +1,38 @@
 import DS from 'ember-data';
+import { ActiveModelSerializer } from 'active-model-adapter';
+
+
 // 1. http://andycrum.github.io/ember-data-model-maker/
 // 2. https://gist.github.com/opsb/730188df99173bff3fc7
 // 3. https://github.com/emberjs/data/blob/master/packages/ember-data/tests/integration/serializers/embedded-records-mixin-test.js
 
-export default DS.ActiveModelSerializer.extend(DS.EmbeddedRecordsMixin, {
-  isNewSerializerAPI: true,
+export default ActiveModelSerializer.extend(DS.EmbeddedRecordsMixin, {
+  isNewSerializerAPI: false,
   attrs: {
     user: {embedded: 'always'}
   },
 
-  serialize(record, options) {
-    console.log('YES ITS BLOODY USING THE REST SERIALIZER');
-    return this._super(record, options);
-  },
   extract(store, type, payload, id, requestType) {
-    console.log(id + "解析 json 到 object:" + payload);
+    console.log("extract;" + id + "解析 json 到 object.");
+    //return this._super(store, type, payload, id, requestType);
+    return this._super(...arguments);
+  },
+
+  extractFind(store, primaryModelClass, payload, id) {
+    console.log('extractFind..');
+    this.loadReplies(payload);
+    return this._super(...arguments);
+  },
+
+  // ------------- isNewSerializerAPI 的开发决定: true 调用新的 hook API(below), false 调用老的 hook API(up) -----------------
+
+  normalizeResponse(store, type, payload, id, requestType) {
+    console.log("normalizeResponse;" + id + "解析 json 到 object:" + payload);
     return this._super(store, type, payload, id, requestType);
   },
 
-  extractSingle(store, type, payload, id) {
-    console.log(id + "extractSingle..." + id);
-    return this._super(store, type, payload, id);
-  },
-
   normalizeFindRecordResponse(store, primaryModelClass, payload, id) {
+    console.log('normalizeFindRecordResponse..');
     this.loadReplies(payload);
     return this._super(...arguments);
   },
