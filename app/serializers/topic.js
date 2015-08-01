@@ -12,13 +12,12 @@ export default ActiveModelSerializer.extend(DS.EmbeddedRecordsMixin, {
     user: {embedded: 'always'}
   },
 
-  extract(store, type, payload, id, requestType) {
+  extract(store, type, payload, id) {
     console.log("extract;" + id + "解析 json 到 object.");
-    //return this._super(store, type, payload, id, requestType);
     return this._super(...arguments);
   },
 
-  extractFind(store, primaryModelClass, payload, id) {
+  extractFind(store, primaryModelClass, payload) {
     console.log('extractFind..');
     this.loadReplies(payload);
     return this._super(...arguments);
@@ -31,7 +30,7 @@ export default ActiveModelSerializer.extend(DS.EmbeddedRecordsMixin, {
     return this._super(store, type, payload, id, requestType);
   },
 
-  normalizeFindRecordResponse(store, primaryModelClass, payload, id) {
+  normalizeFindRecordResponse(store, primaryModelClass, payload) {
     console.log('normalizeFindRecordResponse..');
     this.loadReplies(payload);
     return this._super(...arguments);
