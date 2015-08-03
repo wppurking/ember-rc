@@ -6,5 +6,10 @@ export default ActiveModelSerializer.extend(DS.EmbeddedRecordsMixin, {
   attrs: {
     user: {embedded: 'always'},
     topic: {deserialize: false}
+  },
+
+  serialize(snapshot, options) {
+    console.log(`in reply serialize: ${JSON.options}`);
+    return this._super(...arguments);
   }
 });

@@ -61,6 +61,14 @@ var Topic = DS.Model.extend({
     }
   },
 
+  // 添加本地的 reply
+  addReply(content) {
+    return this.store.createRecord('reply', {
+      topic: this,
+      body: content
+    });
+  },
+
   postReply(reply) {
     /*
     使用 Ember Data 的方式创建的时候, 无法匹配设计好的 URL, 所以无法使用.

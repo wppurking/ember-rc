@@ -19,6 +19,11 @@ export default Ember.Controller.extend({
   actions: {
     selectTab(tab) {
       this.set('activeTab', tab);
+    },
+
+    saveTopic() {
+      console.log('save Topic, and content is :' + this.get('topicContent'));
+
     }
   }
 

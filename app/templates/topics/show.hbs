@@ -106,8 +106,7 @@
           </ul>
         </div>
 
-        <form class="new_reply" id="new_reply" action="#" accept-charset="UTF-8" data-remote="true"
-              method="post"><input name="utf8" type="hidden" value="✓">
+        <form class="new_reply" id="new_reply" {{action 'combSubmit'}} method="post">
 
           <div class="form-group tab-content">
             {{#tab-item tab='edit' activeTab=activeTab class='tab-pane'}}
