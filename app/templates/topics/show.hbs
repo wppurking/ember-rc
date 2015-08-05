@@ -92,8 +92,8 @@
                 <!--<li><a data-lang="shell" href="#">Shell / Bash</a></li>-->
               <!--</ul>-->
             <!--</span>-->
-            {{#uploader-icon}}
-              <span id="topic-upload-image" title="" data-original-title="上传图片"><i class="glyphicon glyphicon-picture"></i></span>
+            {{#uploader-icon succCallBack='appendToReply'}}
+              <span title="上传图片" data-toggle="tooltip" ><i class="glyphicon glyphicon-picture"></i></span>
             {{/uploader-icon}}
           </div>
           <ul class="nav nav-pills" style="clear:none;">

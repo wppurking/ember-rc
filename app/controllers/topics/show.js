@@ -45,6 +45,10 @@ export default Ember.Controller.extend(SR, AjaxProcessing, {
       this.set('activeTab', tab);
     },
 
+    appendToReply(content) {
+      this.set('replyContent', `${this.get('replyContent')}\n${content}`.trim());
+    },
+
     // 多键提交
     combSubmit() {
       if(this._isValidCombination(event)) {
