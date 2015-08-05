@@ -21,9 +21,13 @@ export default Ember.Controller.extend({
       this.set('activeTab', tab);
     },
 
+    appendToReply(content) {
+      this.set('topicContent', `${this.get('topicContent')}\n${content}`.trim());
+    },
+
+    //TODO: 可以思考如何 创建 Topic/回复 Topic(创建 Reply) 的两个编辑框合并成为一个 Component.
     saveTopic() {
       console.log('save Topic, and content is :' + this.get('topicContent'));
-
     }
   }
 

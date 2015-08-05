@@ -11,7 +11,14 @@ export default ActiveModelAdapter.extend({
     return {
       "Authorization": `${this.get('auth.token_type')} ${this.get('auth.token')}`
     };
-  }.property('auth.token')
+  }.property('auth.token'),
+
+
+  shouldBackgroundReloadRecord(store, snapshot) {
+    // 来自 ember-data 的注释. (1.3.x 默认返回 false)
+    //Ember.deprecate('The default behavior of `shouldBackgroundReloadRecord` will change in Ember Data 2.0 to always return true. If you would like to preserve the current behavior please override `shouldBackgroundReloadRecord` in your adapter:application and return false.', false, { id: 'ds.adapter.should-background-reload-record-default-behavior', until: '2.0.0' });
+    return true;
+  }
 
 
 });

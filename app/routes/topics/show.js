@@ -9,6 +9,23 @@ export default Ember.Route.extend(SR, {
     }
   },
 
+  model(params) {
+    console.log("trigger model hook in route..");
+    // find 老方法. 无缓存发 HTTP, 有缓存理解返回.(都返回 Promise)
+    //return this.store.find('topic', params.topic_id);
+
+    // 强制每一次都 reload 最新的
+    //return this.store.findRecord('topic', params.topic_id, {reload: true});
+
+    // 使用缓存, 但每一次都重新出发后台 reload ,成功后在更新缓存 [ findRecord 的默认方法 ]
+    // 但是 backgroundReload 的判断依据来自 adapter.shouldBackgroundReloadRecord 方法
+    //return this.store.findRecord('topic', params.topic_id, {backgroundReload: true});
+    return this.store.findRecord('topic', params.topic_id);
+
+
+    //return this._super(params);
+  },
+
 
   // TODO: 为什么带有参数的 route, 在应用内 transition 不会 trigger model hook, 只有当 hit url 的时候才会 trigger model hook
   // http://discuss.emberjs.com/t/why-is-it-not-possible-to-trigger-the-model-hook-via-link-to-helper/3984/3
@@ -60,14 +77,14 @@ export default Ember.Route.extend(SR, {
 
 
   /* 重置页面参数的方法二: 使用 didTransition 这个 route 进入事件来进行清空 controller
-  actions: {
-    // 在每次 route 进入的时候, 需要将内页的 page 参数重置
-    didTransition() {
-      if(this.controller) {
-        this.controller.set('page', 1);
-      }
-    }
-  }
-  */
+   actions: {
+   // 在每次 route 进入的时候, 需要将内页的 page 参数重置
+   didTransition() {
+   if(this.controller) {
+   this.controller.set('page', 1);
+   }
+   }
+   }
+   */
 
 });

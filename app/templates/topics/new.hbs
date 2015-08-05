@@ -39,9 +39,9 @@
         <li><a data-lang="shell" href="#">Shell / Bash</a></li>
       </ul>
     </span>
-        <a id="topic-upload-image" rel="twipsy" title="" href="#" data-original-title="上传图片"><i
-            class="fa fa-fa fa-image"></i> </a>
-        <input type="file" id="topic-upload-images" style="display:none">
+        {{#uploader-icon succCallBack='appendToReply'}}
+          <span title="上传图片" data-toggle="tooltip" ><i class="glyphicon glyphicon-picture"></i></span>
+        {{/uploader-icon}}
       </div>
       <ul class="nav nav-pills" style="clear:none;">
         {{#tab-item tab='edit' activeTab=activeTab tagName='li'}}
@@ -74,4 +74,6 @@
       <div class="pull-right"><a href="https://ruby-china.org/markdown" target="_blank"><i class="fa fa-tip"></i> 排版说明</a></div>
     </div>
   </div>
+
+  <div class="dropzone dz-preview"></div>
 </div>
