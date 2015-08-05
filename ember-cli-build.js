@@ -18,10 +18,11 @@ module.exports = function(defaults) {
   // modules that you would like to import into your application
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
-  
+
   // 需要定制这个 vendor 的 css 所以无法使用 bower_component 里面的
   // TODO 不知道为什么无法在 vendor 里面使用 scss?
   app.import('vendor/nprogress.css');
+  app.import('bower_components/dropzone/dist/dropzone.css');
 
 
   // Bootstrap Glyphicons 引入:
@@ -41,6 +42,8 @@ module.exports = function(defaults) {
 
   app.import('bower_components/marked/marked.min.js');
   app.import('bower_components/textarea-autosize/src/jquery.textarea_autosize.js');
+  // 使用 AMD 将自己注入到 jquery 插件里面
+  app.import('bower_components/dropzone/dist/dropzone-amd-module.js');
 
 
   return app.toTree();

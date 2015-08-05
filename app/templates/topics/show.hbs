@@ -75,25 +75,26 @@
 
         <div class="editor-toolbar">
           <div class="opts pull-right">
-            <span class="dropdown dropdown-small" id="editor-toolbar-insert-code">
-              <a href="#editor-toolbar-insert-code" data-toggle="dropdown" title="插入代码"><i class="fa fa-code"></i></a>
-              <ul class="dropdown-menu insert-codes" role="menu">
-                <li><a data-lang="ruby" href="#">Ruby</a></li>
-                <li><a data-lang="erb" href="#">HTML / ERB</a></li>
-                <li><a data-lang="scss" href="#">CSS / SCSS</a></li>
-                <li><a data-lang="js" href="#">JavaScript</a></li>
-                <li><a data-lang="yml" href="#">YAML <i>(.yml)</i></a></li>
-                <li><a data-lang="coffee" href="#">CoffeeScript</a></li>
-                <li><a data-lang="conf" href="#">Nginx / Redis <i>(.conf)</i></a></li>
-                <li><a data-lang="python" href="#">Python</a></li>
-                <li><a data-lang="php" href="#">PHP</a></li>
-                <li><a data-lang="java" href="#">Java</a></li>
-                <li><a data-lang="erlang" href="#">Erlang</a></li>
-                <li><a data-lang="shell" href="#">Shell / Bash</a></li>
-              </ul>
-            </span>
-            <a id="topic-upload-image" rel="twipsy" title="" href="#" data-original-title="上传图片"><i class="fa fa-fa fa-image"></i> </a>
-            <input type="file" id="topic-upload-images" style="display:none">
+            <!--<span class="dropdown dropdown-small" id="editor-toolbar-insert-code">-->
+              <!--<a href="#editor-toolbar-insert-code" data-toggle="dropdown" title="插入代码"><i class="fa fa-code"></i></a>-->
+              <!--<ul class="dropdown-menu insert-codes" role="menu">-->
+                <!--<li><a data-lang="ruby" href="#">Ruby</a></li>-->
+                <!--<li><a data-lang="erb" href="#">HTML / ERB</a></li>-->
+                <!--<li><a data-lang="scss" href="#">CSS / SCSS</a></li>-->
+                <!--<li><a data-lang="js" href="#">JavaScript</a></li>-->
+                <!--<li><a data-lang="yml" href="#">YAML <i>(.yml)</i></a></li>-->
+                <!--<li><a data-lang="coffee" href="#">CoffeeScript</a></li>-->
+                <!--<li><a data-lang="conf" href="#">Nginx / Redis <i>(.conf)</i></a></li>-->
+                <!--<li><a data-lang="python" href="#">Python</a></li>-->
+                <!--<li><a data-lang="php" href="#">PHP</a></li>-->
+                <!--<li><a data-lang="java" href="#">Java</a></li>-->
+                <!--<li><a data-lang="erlang" href="#">Erlang</a></li>-->
+                <!--<li><a data-lang="shell" href="#">Shell / Bash</a></li>-->
+              <!--</ul>-->
+            <!--</span>-->
+            {{#uploader-icon}}
+              <span id="topic-upload-image" title="" data-original-title="上传图片"><i class="glyphicon glyphicon-picture"></i></span>
+            {{/uploader-icon}}
           </div>
           <ul class="nav nav-pills" style="clear:none;">
             {{#tab-item tab='edit' activeTab=activeTab tagName='li'}}
@@ -126,6 +127,8 @@
 
             <div class="pull-right"><a href="https://ruby-china.org/markdown" target="_blank">排版说明</a></div>
           </div>
+
+          <div class="dropzone dz-preview"></div>
         </form>
       </div>
     </div>
