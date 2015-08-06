@@ -17,12 +17,12 @@ export default Ember.Controller.extend(SR, AjaxProcessing, {
 
   ishaveReplies: function() {
     return this.model.get('replies.length') > 0;
-  }.property('model', 'page'),
+  }.property('model.replies.[]', 'page'),
 
   pagedReplies: function() {
     var offset = (this.get('page') - 1) * this.get('perPage');
     return this.model.get('replies').slice(offset, (offset + this.get('perPage')));
-  }.property('page', 'model', 'model.replies.@each'), // 这个方法, 每当 page 和传入的 model 变化, 都需要重新计算
+  }.property('page', 'model', 'model.replies.[]'), // 这个方法, 每当 page 和传入的 model 变化, 都需要重新计算
 
 
   actions: {

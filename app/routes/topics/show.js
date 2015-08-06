@@ -32,18 +32,10 @@ export default Ember.Route.extend(SR, {
   // http://guides.emberjs.com/v1.10.0/routing/asynchronous-routing/
 
   afterModel(model, transition) {
-    var route = this;
-    var topic = model.refresh();
-    // 如果不是 model, 则一定是 promise 对象
-    if(topic !== model) {
-      topic.then((m) => {
-        if(!Ember.isBlank(transition.queryParams.top) && transition.queryParams.top === 'true') {
-          route.scrollToTop();
-        }
-        return m;
-      });
+    if(!Ember.isBlank(transition.queryParams.top) && transition.queryParams.top === 'true') {
+      this.scrollToTop();
     }
-    return topic;
+    return model;
   },
 
 
@@ -51,12 +43,23 @@ export default Ember.Route.extend(SR, {
   setupController(controller, model) {
     // 每次进入 show 都情况原来的 replyContent
     controller.set('replyContent', '');
-    // 加载 links 中的数据. 因为 afterModel 中无法存在两个 promise, 所以将 replies 的加载, 使用 loading 标示符进行处理.
-    controller.set('isLoadingTopics', true);
+
+    // 如果有 replies 则让后台更新, 前台不需要等着
+    if(model.get('replies.count') <= 0) {
+      controller.set('isLoadingTopics', true);
+    }
+
     // 能够让 Topic 与 repliy 之间的 hasMany 关系合作起来, 需要参考:
     // 1. 测试代码: https://github.com/emberjs/data/blob/ec006005fa4e4be43587e50d45a889f4011fc2ef/packages/ember-data/tests/integration/relationships/has-many-test.js
     // 2. 一个还没有合并的 pull request. https://github.com/emberjs/data/issues/2162
+    // 3. 这种写法现在还无法到达 #2162 的效果. 现在其效果为: 如果 model.replies: [1,2,3] 则调用 DS.Adapter.findManys 去处理. 如果 model.links.xxx: 'url' 则调用 FindHasMany 去处理.
+    /*
     model.get('replies').then(()=> {
+      controller.set('isLoadingTopics', false);
+    });
+    */
+    // 直接将嵌套 loadReplies 封装到 topic model 的方法中去了.
+    model.loadReplies().finally(() => {
       controller.set('isLoadingTopics', false);
     });
 

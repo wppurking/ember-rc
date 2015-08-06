@@ -9,6 +9,17 @@ export default ApplicationAdapter.extend({
     //return `/topics/${snapshot.belongsTo('topic').id}/${this.pathForType(snapshot.modelName)}.json`;
   },
 
+  urlForQuery(query, modelName) {
+    // deal preload.
+    var preload = query['preload'];
+    var flag = delete query['preload'];
+    if(flag) {
+      return `${this._buildURL(this.pathForType('topic'), preload['topic'])}/${this.pathForType(modelName)}.json`;
+    } else {
+      return this._super(...arguments);
+    }
+  },
+
   createRecord(store, type, snapshot) {
     // 参考 https://github.com/emberjs/data/blob/master/packages/ember-data/lib/adapters/rest-adapter.js
     var data = {};
