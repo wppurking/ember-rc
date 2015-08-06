@@ -1,5 +1,4 @@
 import DS from 'ember-data';
-import ajax from 'ic-ajax';
 
 var Topic = DS.Model.extend({
   /*

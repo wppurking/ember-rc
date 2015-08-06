@@ -18,7 +18,7 @@ export default ActiveModelSerializer.extend(DS.EmbeddedRecordsMixin, {
   },
 
   extractFind(store, primaryModelClass, payload) {
-    console.log('extractFind..');
+    console.log('extractFind..' + payload);
     return this._super(...arguments);
   },
 

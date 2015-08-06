@@ -10,6 +10,6 @@ export default ActiveModelSerializer.extend(DS.EmbeddedRecordsMixin, {
 
   serialize(snapshot, options) {
     console.log(`in reply serialize: ${JSON.options}`);
-    return this._super(...arguments);
+    return this._super(snapshot, options);
   }
 });

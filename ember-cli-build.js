@@ -23,6 +23,7 @@ module.exports = function(defaults) {
   // TODO 不知道为什么无法在 vendor 里面使用 scss?
   app.import('vendor/nprogress.css');
   app.import('bower_components/dropzone/dist/dropzone.css');
+  app.import('bower_components/At.js/dist/css/jquery.atwho.css');
 
 
   // Bootstrap Glyphicons 引入:
@@ -44,6 +45,8 @@ module.exports = function(defaults) {
   app.import('bower_components/textarea-autosize/src/jquery.textarea_autosize.js');
   // 使用 AMD 将自己注入到 jquery 插件里面
   app.import('bower_components/dropzone/dist/dropzone-amd-module.js');
+  app.import('bower_components/Caret.js/dist/jquery.caret.js');
+  app.import('bower_components/At.js/dist/js/jquery.atwho.js');
 
 
   return app.toTree();
