@@ -111,7 +111,7 @@
 
           <div class="form-group tab-content">
             {{#tab-item tab='edit' activeTab=activeTab class='tab-pane'}}
-              {{ex-text value=replyContent tabindex='1' class='topic-editor form-control' key-down='combSubmit'}}
+              {{ex-text value=replyContent replies=pagedReplies tabindex='1' class='topic-editor form-control' key-down='combSubmit'}}
             {{/tab-item}}
 
             {{#tab-item tab='preview' activeTab=activeTab class='tab-pane'}}
