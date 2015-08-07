@@ -24,7 +24,6 @@ export default Ember.Controller.extend(SR, AjaxProcessing, {
     return this.model.get('replies').slice(offset, (offset + this.get('perPage')));
   }.property('page', 'model', 'model.replies.[]'), // 这个方法, 每当 page 和传入的 model 变化, 都需要重新计算
 
-
   actions: {
     plusPage(page) {
       this.set('page', page);

@@ -24,6 +24,7 @@ module.exports = function(defaults) {
   app.import('vendor/nprogress.css');
   app.import('bower_components/dropzone/dist/dropzone.css');
   app.import('bower_components/At.js/dist/css/jquery.atwho.css');
+  app.import('bower_components/fluidbox/css/fluidbox.css');
 
 
   // Bootstrap Glyphicons 引入:
@@ -47,6 +48,7 @@ module.exports = function(defaults) {
   app.import('bower_components/dropzone/dist/dropzone-amd-module.js');
   app.import('bower_components/Caret.js/dist/jquery.caret.js');
   app.import('bower_components/At.js/dist/js/jquery.atwho.js');
+  app.import('bower_components/fluidbox/jquery.fluidbox.js');
 
 
   return app.toTree();
