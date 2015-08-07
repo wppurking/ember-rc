@@ -36,8 +36,7 @@ export default Ember.Component.extend({
       }
     };
 
-    $('.dz-hidden-input').remove();
-    this.$('i').dropzone(Ember.merge(dropZoneOptions, {headers: this.get('headers')}));
+    this.utils.initDropzone(this.$('i'), Ember.merge(dropZoneOptions, {headers: this.get('headers')}));
     this.$('span').tooltip();
   }
 });
