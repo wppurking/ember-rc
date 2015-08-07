@@ -21,5 +21,15 @@ export default Ember.Service.extend({
       $('.dz-hidden-input').remove();
       $el.dropzone(options);
     });
+  },
+
+  initAtwho($el, options) {
+    $('.atwho-container').remove();
+    var defaultOptions = {
+      at: "@",
+      search_key: "search",
+      tpl: "<li data-value='${login}'>${login} <small>${name}</small></li>"
+    };
+    $el.atwho(Ember.merge(defaultOptions, options));
   }
 });

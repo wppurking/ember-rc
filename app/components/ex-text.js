@@ -16,13 +16,7 @@ export default Ember.TextArea.extend({
         commenters.push(r.get('user.login'));
       });
 
-      $('.atwho-container').remove();
-      this.$().atwho({
-        at: "@",
-        data: commenters.uniq(),
-        search_key: "search",
-        tpl: "<li data-value='${login}'>${login} <small>${name}</small></li>"
-      });
+      this.utils.initAtwho(this.$(), {data: commenters.uniq()});
     }
   }
 });
