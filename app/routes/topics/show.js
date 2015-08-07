@@ -20,19 +20,7 @@ export default Ember.Route.extend(SR, {
     // 使用缓存, 但每一次都重新出发后台 reload ,成功后在更新缓存 [ findRecord 的默认方法 ]
     // 但是 backgroundReload 的判断依据来自 adapter.shouldBackgroundReloadRecord 方法
     //return this.store.findRecord('topic', params.topic_id, {backgroundReload: true});
-    return this.store.findRecord('topic', params.topic_id).then((topic) => {
-      Ember.run.scheduleOnce('afterRender', this, function() {
-        // 与 topic.reply 两块类似的代码, 有没有必要使用 Service 统一起来?
-        $('.topic-detail .markdown img').each((i, img) => {
-          $(img).wrap(`<a href="${img.getAttribute('src')}"></a>`).parent().fluidbox({
-            closeTrigger: [{selector: 'window', event: 'resize scroll'}]
-          });
-        });
-      });
-      return topic;
-    });
-
-
+    return this.store.findRecord('topic', params.topic_id);
     //return this._super(params);
   },
 

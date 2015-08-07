@@ -9,11 +9,7 @@ export default Ember.Component.extend(SR, {
   }.property(),
 
   didInsertElement() {
-    this.$('.markdown img').each((i, img) => {
-      $(img).wrap(`<a href="${img.getAttribute('src')}"></a>`).parent().fluidbox({
-        closeTrigger: [{selector: 'window', event: 'resize scroll'}]
-      });
-    });
+    this.utils.initFluidboxImg(this.$('.markdown img'));
   },
 
   actions: {

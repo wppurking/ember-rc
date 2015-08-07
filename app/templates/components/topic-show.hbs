@@ -1,0 +1,45 @@
+<div class="topic-detail panel panel-default">
+  <div class="panel-heading media clearfix">
+    <div class="media-body">
+      <h1 class="media-heading">{{topic.title}} {{{ruby-china topic.id}}}</h1>
+
+      <div class="info">
+        <a class="node" href="/topics/node{{topic.node_id}}">{{topic.node_name}}</a>
+        ·
+        <a href="#">{{topic.user.login}}</a>
+        ·
+        于 <abbr class="timeago" title="{{topic.created_at}}">{{time-in-words topic.created_at}}</abbr>发布
+        ·
+        最后由
+        <a href="#">{{topic.last_reply_user_login}}</a> 于 <abbr class="timeago" title="{{topic.replied_at}}">
+        {{time-in-words topic.replied_at}}</abbr>回复
+        ·
+        {{topic.hits}} 次阅读
+      </div>
+    </div>
+    <div class="avatar media-right">
+      <a href="#">
+        <img class="media-object avatar-48" src="{{topic.user.avatar_url}}" alt="{{topic.user.id}}">
+      </a>
+    </div>
+  </div>
+
+  <div class="panel-body markdown">
+    {{{topic.body_html}}}
+  </div>
+
+  <div class="label-awesome"></div>
+
+  <div class="panel-footer clearfix">
+    <div class="opts">
+      <a title="喜欢" data-count="12" data-state="" data-type="Topic" data-id="25728" class="likeable " href="#">
+        <i class="fa fa-heart-o"></i>
+        <span>12 人喜欢</span>
+      </a>
+      <a data-id="25728" data-followed="false" class="follow" href="#"><i class="fa fa-eye"></i> 关注</a>
+      <a title="收藏" class="bookmark " data-id="25728" href="#"><i class="fa fa-bookmark"></i></a>
+      <span class="pull-right opts"> </span>
+    </div>
+  </div>
+</div>
+{{yield}}
