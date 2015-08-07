@@ -16,6 +16,7 @@ export default Ember.TextArea.extend({
         commenters.push(r.get('user.login'));
       });
 
+      $('.atwho-container').remove();
       this.$().atwho({
         at: "@",
         data: commenters.uniq(),
