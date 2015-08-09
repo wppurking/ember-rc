@@ -1,15 +1,23 @@
 import Ember from 'ember';
 
+/**
+ * jQuery 插件初始化服务
+ */
 export default Ember.Service.extend({
   // 初始化 Fluidbox 图片
   initFluidboxImg($imgs) {
     if(Ember.isArray($imgs)) {
       Ember.run.scheduleOnce('afterRender', function() {
-        console.log('utils-service.afterRender....');
+        console.log(`utils-service.afterRender.... have ${$imgs.size()} images.`);
         $imgs.each((i, img) => {
-          $(img).wrap(`<a href="${img.getAttribute('src')}"></a>`).parent().fluidbox({
-            closeTrigger: [{selector: 'window', event: 'resize scroll'}]
-          });
+          var className = img.getAttribute('class');
+          if(!Ember.isBlank(className) && className.includes('emoji')) {
+            console.log("跳过 emoji 表情.");
+          } else {
+            $(img).wrap(`<a href="${img.getAttribute('src')}"></a>`).parent().fluidbox({
+              closeTrigger: [{selector: 'window', event: 'resize scroll'}]
+            });
+          }
         });
       });
     }

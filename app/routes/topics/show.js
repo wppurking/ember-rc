@@ -20,8 +20,11 @@ export default Ember.Route.extend(SR, {
     // 使用缓存, 但每一次都重新出发后台 reload ,成功后在更新缓存 [ findRecord 的默认方法 ]
     // 但是 backgroundReload 的判断依据来自 adapter.shouldBackgroundReloadRecord 方法
     //return this.store.findRecord('topic', params.topic_id, {backgroundReload: true});
-    return this.store.findRecord('topic', params.topic_id);
-    //return this._super(params);
+
+    // 如果有 cache, 但无 body 那么则直接 reload 避免只刷出 title 然后等着异步的 body
+    var cacheTopic = this.store.peekRecord('topic', params.topic_id);
+    var isReload = Ember.isPresent(cacheTopic) && Ember.isBlank(cacheTopic.get('body_html'));
+    return this.store.findRecord('topic', params.topic_id, {reload: isReload});
   },
 
 
