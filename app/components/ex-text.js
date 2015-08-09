@@ -8,21 +8,22 @@ export default Ember.TextArea.extend({
     this.initAtWho();
   },
 
+  didReceiveAttrs(tuple) {
+    if(Ember.isPresent(tuple.oldAttrs) &&
+      tuple.oldAttrs.replies.value.get('length') !== tuple.newAttrs.replies.value.get('length')) {
+      this.initAtWho();
+    }
+  },
+
   initAtWho: function() {
-    if(!Ember.isBlank(this.attrs.replies)) {
+    if(Ember.isPresent(this.attrs.replies) && Ember.isPresent(this.$())) {
       console.log(`reply counts: ${this.attrs.replies.value.get('length')}`);
       var commenters = Ember.A();
       this.attrs.replies.value.forEach((r) => {
         commenters.push(r.get('user.login'));
       });
 
-      console.log(this.$());
-      this.$().atwho({
-        at: "@",
-        data: commenters.uniq(),
-        search_key: "search",
-        tpl: "<li data-value='${login}'>${login} <small>${name}</small></li>"
-      });
+      this.utils.initAtwho(this.$(), {data: commenters.uniq()});
     }
   }
 });
