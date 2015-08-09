@@ -17,7 +17,6 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-      login_base_URL: "http://localhost:4567"
     },
 
     // ember-cli 中的 [Content Security Policy]
@@ -36,11 +35,10 @@ module.exports = function(environment) {
 
   if(environment === 'development') {
     ENV.baseURL = '/';
-    ENV.APP.login_base_URL = "http://localhost:4567";
     // ENV.APP.LOG_RESOLVER = true;
-     ENV.APP.LOG_ACTIVE_GENERATION = true;
-     ENV.APP.LOG_TRANSITIONS = true;
-     ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
+    ENV.APP.LOG_ACTIVE_GENERATION = true;
+    ENV.APP.LOG_TRANSITIONS = true;
+    ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
   }
 

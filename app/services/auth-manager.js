@@ -25,15 +25,13 @@ export default Ember.Service.extend({
       service.registerTokenToAjaxHeader();
       return new Ember.RSVP.resolve(this.get('authToken'));
     } else if(Ember.isPresent(user) && Ember.isPresent(paswd)) {
-      return ajax(`${EmberRc.login_base_URL}/login`, {
-        data: {username: user, password: paswd},
+      return ajax('https://ruby-china.org/oauth/token', {
+        data: {username: user, password: paswd, grant_type: 'password'},
         method: 'POST'
       }).then((res) => {
-        if(res.code === 200) {
-          this.set('authToken', res);
-          service.registerTokenToAjaxHeader();
-          service.pushUsername(user);
-        }
+        this.set('authToken', res);
+        service.registerTokenToAjaxHeader();
+        service.pushUsername(user);
       }).catch((xhr, err) => {
         console.error(`用户登陆失败, 因为 [${err}]`);
       });
