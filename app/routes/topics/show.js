@@ -46,7 +46,7 @@ export default Ember.Route.extend(SR, {
     controller.set('replyContent', '');
 
     // 如果有 replies 则让后台更新, 前台不需要等着
-    if(model.get('replies.count') <= 0) {
+    if(model.get('replies.length') <= 0) {
       controller.set('isLoadingTopics', true);
     }
 
