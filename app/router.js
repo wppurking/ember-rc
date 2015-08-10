@@ -14,6 +14,9 @@ Router.map(function() {
   this.route('nodes', function() {
     this.route('show', {path: '/:node_id'});
   });
+  this.route('users', function() {
+    this.route('show', {path: '/:user_id'});
+  });
 });
 
 export default Router;
