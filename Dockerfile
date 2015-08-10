@@ -1,8 +1,9 @@
 FROM index.alauda.cn/library/node:0.12.7
 MAINTAINER Wyatt Pan <wppurking@gmail.com>
 
-ADD ./ /app/ember-rc
-RUN npm i
+ADD ./ /app
 
-WORKDIR /app/ember-rc
+RUN npm install -g bower ember-cli && npm install --verbose
+
+WORKDIR /app
 CMD ['ember s -prod']
