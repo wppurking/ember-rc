@@ -1,4 +1,4 @@
-FROM node:0.12.7
+FROM index.alauda.cn/library/node:0.12.7
 MAINTAINER Wyatt Pan <wppurking@gmail.com>
 
 ADD ./ /app/ember-rc
