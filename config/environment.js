@@ -4,8 +4,7 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'ember-rc',
     environment: environment,
-    // 产品环境在 /ember-rc 开发/测试环境在 "/"" 根目录
-    baseURL: '/ember-rc',
+    baseURL: '/',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
