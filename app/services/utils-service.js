@@ -11,7 +11,7 @@ export default Ember.Service.extend({
         console.log(`utils-service.afterRender.... have ${$imgs.size()} images.`);
         $imgs.each((i, img) => {
           var className = img.getAttribute('class');
-          if(!Ember.isBlank(className) && className.includes('emoji')) {
+          if(Ember.isPresent(className) && className.indexOf('emoji') >= 0) {
             console.log("跳过 emoji 表情.");
           } else {
             $(img).wrap(`<a href="${img.getAttribute('src')}"></a>`).parent().fluidbox({
