@@ -12,6 +12,13 @@ export default Ember.Component.extend({
       }
     });
     return dulArray.filter((array) => { return array.length > 0});
-  }.property('attrs.users.[]')
+  }.property('attrs.users.[]'),
+
+  actions: {
+    follow(user) {
+      alert(`还未实现 "关注" 功能. 所以还不能 '关注': ${user}`);
+      console.log('还未实现 "关注" 的功能.');
+    }
+  }
 
 });
