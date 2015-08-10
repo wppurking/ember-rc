@@ -1,13 +1,5 @@
-FROM index.alauda.cn/library/node:0.12.7
+FROM nginx:1.9
 MAINTAINER Wyatt Pan <wppurking@gmail.com>
 
-WORKDIR /app
-ADD ./package.json package.json
-ADD ./bower.json bower.json
-RUN npm install -g bower ember-cli && npm install && bower install --allow-root
-
-# cache for bower and npm
-ADD ./ /app
-
-EXPOSE 4200
-CMD ['/usr/local/bin/ember s -prod']
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY dist/ /dist
