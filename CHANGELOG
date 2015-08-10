@@ -1,5 +1,11 @@
-V0.1.0
-* 以用户能够访问查看 Topics 为目标
+v0.2.0  -  以用户能够创建, 回复 Topics 为目标
+* 使用 sinatra 代理登陆 Ruby-Chian 获取 token
+* 用户通过 oauth2 登陆/登出系统
+* Topic 回复功能
+* 创建 Topic 功能(简单选择 node)
+* Photos 上传功能.
+
+V0.1.0  -  以用户能够访问查看 Topics 为目标
 * Nodes 列表 + 首页
 * Topics 列表页面展示
 * Topic 详情展示
