@@ -30,7 +30,7 @@ export default ActiveModelSerializer.extend(DS.EmbeddedRecordsMixin, {
   },
 
   normalizeFindRecordResponse(store, primaryModelClass, payload) {
-    console.log('normalizeFindRecordResponse..');
+    console.log('normalizeFindRecordResponse..' + payload);
     return this._super(...arguments);
   }
 });

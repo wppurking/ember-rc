@@ -20,3 +20,25 @@
     }
   }
 }
+
+.sidebar {
+  .profile {
+    .item {
+      margin-bottom: 5px;
+    }
+
+    .number {
+      color: #999;
+    }
+  }
+
+
+  .follow-info {
+    margin-top: 15px;
+  }
+
+  .buttons {
+    margin-top: 15px;
+    padding-top: 15px;
+  }
+}

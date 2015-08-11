@@ -1,0 +1,121 @@
+<div class="row">
+  <div class="sidebar col-md-4">
+    <div class="panel profile panel-default">
+      <div class="panel-body">
+        <div class="media">
+          <div class="avatar media-left">
+            {{#link-to 'users.show' model.login}}
+              <img class="media-object avatar-120" src="{{model.avatar_url}}" alt="{{model.id}}">
+            {{/link-to}}
+          </div>
+          <div class="media-body">
+            <div class="item">
+              {{model.login}} ({{model.name}})
+              <span class="opts pull-right"></span>
+            </div>
+            <div class="item number">第 {{model.id}} 位会员</div>
+            <div class="item badges">
+              {{#if isAdmin}}
+                <span class="label label-warning role">管理員</span>
+              {{/if}}
+            </div>
+          </div>
+        </div>
+        <div class="follow-info row">
+          <div class="col-sm-4 followers" data-login="rei">
+            <a class="counter" href="#">?</a>
+            <a class="text" href="#">关注者</a>
+          </div>
+          <div class="col-sm-4 following">
+            <a class="counter" href="#">?</a>
+            <a class="text" href="#">正在关注</a>
+          </div>
+          <div class="col-sm-4 stars">
+            <a class="counter" href="#">?</a>
+            <a class="text" href="#">收藏</a>
+          </div>
+        </div>
+        <div class="buttons row">
+          <div class="col-sm-6">
+            <a class="button-follow-user btn btn-primary btn-block" href="#"><i class="fa fa-user"></i> <span>关注</span></a>
+          </div>
+
+          <div class="col-sm-6">
+            <a class="button-block-user btn btn-default btn-block" href="#"><i class="fa fa-eye-slash"></i>
+              <span>屏蔽</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-8">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="/rei">个人信息</a></li>
+    </ul>
+
+    <div class="panel panel-default userinfo">
+      <div class="panel-body vcard clearfix">
+        <ul class="list-group">
+
+          {{#if model.location}}
+            <li class="adr list-group-item">
+              <label>城市:</label>
+            <span class="region">
+              <a href="/users/city/%E5%B9%BF%E8%A5%BF">{{model.location}}</a>
+            </span>
+            </li>
+          {{/if}}
+
+
+          {{#if model.email}}
+            <li class="list-group-item">
+              <label>Email:</label>
+              <span><a href="mailto:{{model.email}}">{{model.email}}</a></span>
+            </li>
+          {{/if}}
+
+          {{#if model.twitter}}
+            <li class="list-group-item">
+              <label><span class="translation_missing"
+                           title="translation missing: zh-CN.users.twitter">Twitter</span>:</label>
+              <span><a class="twitter" rel="nofollow"
+                       href="https://twitter.com/{{model.twitter}}">@{{model.twitter}}</a></span>
+            </li>
+          {{/if}}
+
+          {{#if model.website}}
+            <li class="list-group-item">
+              <label>博客:</label>
+            <span><a target="_blank" class="url" rel="nofollow"
+                     href="{{model.website}}">{{model.website}}</a></span>
+            </li>
+          {{/if}}
+
+          {{#if model.tagline}}
+            <li class="list-group-item">
+              <label>签名:</label>
+              <span>{{model.tagline}}</span>
+            </li>
+          {{/if}}
+
+          <li class="list-group-item">
+            <label>Since:</label>
+            <span>{{model.created_at}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    {{#if model.bio}}
+      <div class="panel panel-default bio">
+        <div class="panel-heading">个人介绍</div>
+        <div class="panel-body markdown">
+          <p>{{model.bio}}</p>
+        </div>
+      </div>
+    {{/if}}
+
+  </div>
+</div>
+{{outlet}}
