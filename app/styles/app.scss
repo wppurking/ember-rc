@@ -4,6 +4,7 @@
 @import "topics";
 @import "nodes";
 @import "index";
+@import "users";
 
 img.emoji {
   width: 20px;
@@ -14,4 +15,34 @@ img.emoji {
   display:block;
   width: 300px;
   margin:20px;
+}
+
+.editor-toolbar {
+  margin-top:5px;
+
+  .nav-pills a {
+    padding: 3px 15px;
+    border-radius: 0;
+  }
+
+  li.edit {
+    background-color: $lightGray;
+  }
+
+  .preview {
+    padding: 10px 10px;
+    border-radius: 0;
+    min-height: 90px;
+  }
+}
+
+.topic-editor {
+  min-height: 80px;
+  border-radius: 0;
+  color: #555;
+}
+
+.topic-editor-new {
+  @extend .topic-editor;
+  min-height: 280px;
 }

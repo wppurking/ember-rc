@@ -1,0 +1,79 @@
+<div class="panel panel-default">
+  <div class="panel-heading">发布新话题</div>
+  <div class="panel-body">
+
+    <div class="row">
+      <div class="col-md-3">
+        <select class="form-control">
+          {{#each selectContent as |sec|}}
+            <optgroup label="{{sec.name}}">
+              {{#each sec.nodes as |node|}}
+                <option value="{{node.id}}">{{node.name}}</option>
+              {{/each}}
+            </optgroup>
+          {{/each}}
+        </select>
+      </div>
+
+      <div class="col-md-9">
+        <input class="form-control" placeholder="在这里填写标题" type="text" name="topic[title]" id="topic_title">
+      </div>
+    </div>
+
+    <div class="editor-toolbar">
+      <div class="opts pull-right">
+    <span class="dropdown dropdown-small" id="editor-toolbar-insert-code">
+      <a href="#editor-toolbar-insert-code" data-toggle="dropdown" title="插入代码"><i class="fa fa-code"></i></a>
+      <ul class="dropdown-menu insert-codes" role="menu">
+        <li><a data-lang="ruby" href="#">Ruby</a></li>
+        <li><a data-lang="erb" href="#">HTML / ERB</a></li>
+        <li><a data-lang="scss" href="#">CSS / SCSS</a></li>
+        <li><a data-lang="js" href="#">JavaScript</a></li>
+        <li><a data-lang="yml" href="#">YAML <i>(.yml)</i></a></li>
+        <li><a data-lang="coffee" href="#">CoffeeScript</a></li>
+        <li><a data-lang="conf" href="#">Nginx / Redis <i>(.conf)</i></a></li>
+        <li><a data-lang="python" href="#">Python</a></li>
+        <li><a data-lang="php" href="#">PHP</a></li>
+        <li><a data-lang="java" href="#">Java</a></li>
+        <li><a data-lang="erlang" href="#">Erlang</a></li>
+        <li><a data-lang="shell" href="#">Shell / Bash</a></li>
+      </ul>
+    </span>
+        {{#uploader-icon succCallBack='appendToReply'}}
+          <span title="上传图片" data-toggle="tooltip" ><i class="glyphicon glyphicon-picture"></i></span>
+        {{/uploader-icon}}
+      </div>
+      <ul class="nav nav-pills" style="clear:none;">
+        {{#tab-item tab='edit' activeTab=activeTab tagName='li'}}
+          <a href="#" {{action 'selectTab' 'edit'}}>编辑</a>
+        {{/tab-item}}
+
+        {{#tab-item tab='preview' activeTab=activeTab tagName='li'}}
+          <a href="#" {{action 'selectTab' 'preview'}}>预览</a>
+        {{/tab-item}}
+      </ul>
+    </div>
+
+
+    <div class="form-group tab-content">
+      {{#tab-item tab='edit' activeTab=activeTab class='tab-pane'}}
+        <!-- 这里注意与 reply 的 edit/preview 部分可以整合到一块代码, 抽取到 Component 中. 不同的操作, 通过 key-down 触发的事件来动态确定就好. -->
+        {{ex-text value=topicContent class='topic-editor-new form-control closewarning'}}
+      {{/tab-item}}
+
+      {{#tab-item tab='preview' activeTab=activeTab class='tab-pane'}}
+        <div class="preview markdown">
+          {{{mark-down topicContent}}}
+        </div>
+      {{/tab-item}}
+    </div>
+
+    <div class="form-group">
+      <button class="btn btn-primary col-xs-2" {{action 'saveTopic'}}>保存</button>
+
+      <div class="pull-right"><a href="https://ruby-china.org/markdown" target="_blank"><i class="fa fa-tip"></i> 排版说明</a></div>
+    </div>
+  </div>
+
+  <div class="dropzone dz-preview"></div>
+</div>

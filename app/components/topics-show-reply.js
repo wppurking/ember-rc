@@ -8,6 +8,10 @@ export default Ember.Component.extend(SR, {
     return this.attrs.num.value + 1;
   }.property(),
 
+  didInsertElement() {
+    this.utils.initFluidboxImg(this.$('.markdown img'));
+  },
+
   actions: {
     scrollToit(reply) {
       this.scrollTo($("#reply-" + reply.get('id')));

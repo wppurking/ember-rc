@@ -126,25 +126,12 @@ abbr.timeago {
   }
 }
 
-#reply {
-  .nav-pills a {
-    padding: 3px 15px;
-    border-radius: 0;
-  }
-
-  .topic-editor {
-    border-radius: 0;
-    color: #555;
-  }
-
-  li.edit {
-    background-color: $lightGray;
-  }
-
-  .preview {
-    padding: 10px 10px;
-    border-radius: 0;
-    min-height: 90px;
-  }
+// 复写 dropzone 自己的 css
+.dropzone {
+  min-height: 0;
+  padding: 0;
+  border: 0;
 }
-
+.dz-clickable {
+  cursor: pointer;
+}

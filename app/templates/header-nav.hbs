@@ -19,9 +19,14 @@
             {{#link-to 'topics' (query-params page=1)}}社区{{/link-to}}
           </li>
           <li><a target="_blank" href="https://ruby-china.org/wiki">Wiki</a></li>
-          <li><a target="_blank" href="https://ruby-china.org/jobs">招聘</a></li>
+          <li>
+            {{#link-to 'nodes.show' 25}}招聘{{/link-to}}
+          </li>
           <li><a target="_blank" href="https://ruby-china.org/twitter">推文</a></li>
           <li><a target="_blank" href="https://ruby-china.org/sites">酷站</a></li>
+          <li>
+            {{#link-to 'users'}}用户{{/link-to}}
+          </li>
         </ul>
 
         {{#if auth.isLogin}}
@@ -43,7 +48,7 @@
                   <a href="#">个人资料设置</a>
                 </li>
                 <li>
-                  <a href="#">记事本</a>
+                  <a href="#" {{action 'hello'}}>记事本 [hello]</a>
                 </li>
                 <li>
                   <a href="#" {{action 'user'}}>我的收藏</a>

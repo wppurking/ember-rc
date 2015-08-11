@@ -25,7 +25,7 @@ export default Ember.Controller.extend({
 
   actions: {
 
-    toggleLogin(form) {
+    toggleLogin() {
       this.toggleProperty('isShowLogin');
       Ember.$('#login-form').css('top', 40).css('left', -130);
     },

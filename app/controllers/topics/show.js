@@ -10,32 +10,23 @@ export default Ember.Controller.extend(SR, AjaxProcessing, {
   page: 1,
   perPage: 50,
 
-  // --- tab 相关的操作 ---
-  // 拥有的所有 tabs:
-  //  1. 展示 tab 的 li 操作
-  //  2. 给予 tab pane 拥有 action 名字
-  tabs: [
-    {action: 'edit', text: '编辑'},
-    {action: 'preview', text: '预览'}
-  ],
   // 具体让哪一个 tab pane 激活
   activeTab: 'edit',
 
   replyContent: '',
 
   isHaveReplies: function() {
-    return this.model.get('replies_count') > 0;
-  }.property('model'),
+    return this.model.get('replies.length') > 0;
+  }.property('model.replies.[]', 'page'),
 
   isHavePages: function() {
-    return this.model.get('replies_count') > 50;
-  }.property('model'),
+    return this.model.get('replies.length') > 50;
+  }.property('model.replies.[]', 'page'),
 
   pagedReplies: function() {
     var offset = (this.get('page') - 1) * this.get('perPage');
     return this.model.get('replies').slice(offset, (offset + this.get('perPage')));
-  }.property('page', 'model', 'model.replies.@each'), // 这个方法, 每当 page 和传入的 model 变化, 都需要重新计算
-
+  }.property('page', 'model', 'model.replies.[]'), // 这个方法, 每当 page 和传入的 model 变化, 都需要重新计算
 
   actions: {
     plusPage(page) {
@@ -57,14 +48,17 @@ export default Ember.Controller.extend(SR, AjaxProcessing, {
       this.set('activeTab', tab);
     },
 
+    appendToReply(content) {
+      this.set('replyContent', `${this.get('replyContent')}\n${content}`.trim());
+    },
+
     // 多键提交
     combSubmit() {
-      var controller = this;
       if(this._isValidCombination(event)) {
         this.aroundProcess(() => {
-          //topics/:id/replies.json
-          controller.get('model').postReply(controller.get('replyContent')).then(() => {
-            controller.set('replyContent', '');
+          var reply = this.get('model').addReply(this.get('replyContent'));
+          reply.save().then(() => {
+            this.set('replyContent', '');
           });
         });
       }

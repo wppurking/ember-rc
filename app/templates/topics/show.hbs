@@ -1,134 +1,101 @@
-<div class="topic-detail panel panel-default">
-  <div class="panel-heading media clearfix">
-    <div class="media-body">
-      <h1 class="media-heading">{{model.title}} {{{ruby-china model.id}}}</h1>
+<div class="row">
+  <div class="col-md-9">
+    {{topic-show topic=model}}
 
-      <div class="info">
-        <a class="node" href="/topics/node{{model.node_id}}">{{model.node_name}}</a>
-        ·
-        <a href="#">{{model.user.login}}</a>
-        ·
-        于 <abbr class="timeago" title="{{model.created_at}}">{{time-in-words model.created_at}}</abbr>发布
-        ·
-        最后由
-        <a href="#">{{model.last_reply_user_login}}</a> 于 <abbr class="timeago" title="{{model.replied_at}}">
-        {{time-in-words model.replied_at}}</abbr>回复
-        ·
-        {{model.hits}} 次阅读
+    {{#if isLoadingTopics}}
+      <div class="no-result">
+        评论加载中...
       </div>
-    </div>
-    <div class="avatar media-right">
-      <a href="#">
-        <img class="media-object avatar-48" src="{{model.user.avatar_url}}" alt="{{model.user.id}}">
-      </a>
-    </div>
+    {{else}}
+      {{#if isHaveReplies}}
+        <div id="replies" class="panel panel-default">
+          <div class="total panel-heading">
+            共收到 <b>{{model.replies_count}}</b> 条回复
+          </div>
+          <div class="items panel-body">
+            <!-- 感叹... 来回变. https://github.com/emberjs/ember.js/pull/11461 -->
+            {{#each pagedReplies as |reply i|}}
+              {{topics-show-reply reply=reply num=i}}
+            {{/each}}
+          </div>
+          {{#if isHavePages}}
+            {{paginate-toolbar next="nextPage" prev="prevPage" currentPage=page route='topics.show' totalCount=model.replies_count}}
+          {{/if}}
+        </div>
+      {{else}}
+        <div class="no-result">
+          暂无回复。
+        </div>
+      {{/if}}
+
+      {{#if auth.isLogin}}
+        <div id="reply" class="panel panel-default">
+          <div class="panel-heading">回帖</div>
+          <div class="panel-body">
+
+            <div class="editor-toolbar">
+              <div class="opts pull-right">
+                <!--<span class="dropdown dropdown-small" id="editor-toolbar-insert-code">-->
+                <!--<a href="#editor-toolbar-insert-code" data-toggle="dropdown" title="插入代码"><i class="fa fa-code"></i></a>-->
+                <!--<ul class="dropdown-menu insert-codes" role="menu">-->
+                <!--<li><a data-lang="ruby" href="#">Ruby</a></li>-->
+                <!--<li><a data-lang="erb" href="#">HTML / ERB</a></li>-->
+                <!--<li><a data-lang="scss" href="#">CSS / SCSS</a></li>-->
+                <!--<li><a data-lang="js" href="#">JavaScript</a></li>-->
+                <!--<li><a data-lang="yml" href="#">YAML <i>(.yml)</i></a></li>-->
+                <!--<li><a data-lang="coffee" href="#">CoffeeScript</a></li>-->
+                <!--<li><a data-lang="conf" href="#">Nginx / Redis <i>(.conf)</i></a></li>-->
+                <!--<li><a data-lang="python" href="#">Python</a></li>-->
+                <!--<li><a data-lang="php" href="#">PHP</a></li>-->
+                <!--<li><a data-lang="java" href="#">Java</a></li>-->
+                <!--<li><a data-lang="erlang" href="#">Erlang</a></li>-->
+                <!--<li><a data-lang="shell" href="#">Shell / Bash</a></li>-->
+                <!--</ul>-->
+                <!--</span>-->
+                {{#uploader-icon succCallBack='appendToReply'}}
+                  <span title="上传图片" data-toggle="tooltip"><i class="glyphicon glyphicon-picture"></i></span>
+                {{/uploader-icon}}
+              </div>
+              <ul class="nav nav-pills" style="clear:none;">
+                {{#tab-item tab='edit' activeTab=activeTab tagName='li'}}
+                  <a href="#" {{action 'selectTab' 'edit'}}>编辑</a>
+                {{/tab-item}}
+
+                {{#tab-item tab='preview' activeTab=activeTab tagName='li'}}
+                  <a href="#" {{action 'selectTab' 'preview'}}>预览</a>
+                {{/tab-item}}
+              </ul>
+            </div>
+
+            <form class="new_reply" id="new_reply" {{action 'combSubmit'}} method="post">
+
+              <div class="form-group tab-content">
+                {{#tab-item tab='edit' activeTab=activeTab class='tab-pane'}}
+                  {{ex-text value=replyContent replies=pagedReplies tabindex='1' class='topic-editor form-control' key-down='combSubmit'}}
+                {{/tab-item}}
+
+                {{#tab-item tab='preview' activeTab=activeTab class='tab-pane'}}
+                  <div class="preview markdown">
+                    {{{mark-down replyContent}}}
+                  </div>
+                {{/tab-item}}
+              </div>
+              <div class="submit-buttons">
+                {{input type='submit' id='reply-button' disabled=isProcessing class='btn btn-primary' value='提交回复'}}
+
+                <span class="help-inline" title="或者 Ctrl + Enter"><kbd>Command</kbd> + <kbd>Enter</kbd></span>
+
+                <div class="pull-right"><a href="https://ruby-china.org/markdown" target="_blank">排版说明</a></div>
+              </div>
+
+              <div class="dropzone dz-preview"></div>
+            </form>
+          </div>
+        </div>
+      {{/if}}
+    {{/if}}
   </div>
 
-  <div class="panel-body markdown">
-    {{{model.body_html}}}
-  </div>
-
-  <div class="label-awesome"></div>
-
-  <div class="panel-footer clearfix">
-    <div class="opts">
-      <a title="喜欢" data-count="12" data-state="" data-type="Topic" data-id="25728" class="likeable " href="#">
-        <i class="fa fa-heart-o"></i>
-        <span>12 人喜欢</span>
-      </a>
-      <a data-id="25728" data-followed="false" class="follow" href="#"><i class="fa fa-eye"></i> 关注</a>
-      <a title="收藏" class="bookmark " data-id="25728" href="#"><i class="fa fa-bookmark"></i></a>
-      <span class="pull-right opts"> </span>
-    </div>
+  <div class="col-md-3">
   </div>
 </div>
-
-{{#if isLoadingTopics}}
-  <div class="total panel-heading">
-    Loading...
-  </div>
-{{else}}
-  {{#if isHaveReplies}}
-    <div id="replies" class="panel panel-default">
-      <div class="total panel-heading">
-        共收到 <b>{{model.replies_count}}</b> 条回复
-      </div>
-      <div class="items panel-body">
-      <!-- 感叹... 来回变. https://github.com/emberjs/ember.js/pull/11461 -->
-        {{#each pagedReplies as |reply i|}}
-          {{topics-show-reply reply=reply num=i}}
-        {{/each}}
-      </div>
-
-      {{#if isHavePages}}
-        {{paginate-toolbar next="nextPage" prev="prevPage" currentPage=page route='topics.show' totalCount=model.replies_count}}
-      {{/if}}
-    </div>
-  {{else}}
-    <div class="no-result">
-      暂无回复。
-    </div>
-  {{/if}}
-
-  {{#if auth.isLogin}}
-    <div id="reply" class="panel panel-default">
-      <div class="panel-heading">回帖</div>
-      <div class="panel-body">
-
-        <div class="editor-toolbar">
-          <div class="opts pull-right">
-            <span class="dropdown dropdown-small" id="editor-toolbar-insert-code">
-              <a href="#editor-toolbar-insert-code" data-toggle="dropdown" title="插入代码"><i class="fa fa-code"></i></a>
-              <ul class="dropdown-menu insert-codes" role="menu">
-                <li><a data-lang="ruby" href="#">Ruby</a></li>
-                <li><a data-lang="erb" href="#">HTML / ERB</a></li>
-                <li><a data-lang="scss" href="#">CSS / SCSS</a></li>
-                <li><a data-lang="js" href="#">JavaScript</a></li>
-                <li><a data-lang="yml" href="#">YAML <i>(.yml)</i></a></li>
-                <li><a data-lang="coffee" href="#">CoffeeScript</a></li>
-                <li><a data-lang="conf" href="#">Nginx / Redis <i>(.conf)</i></a></li>
-                <li><a data-lang="python" href="#">Python</a></li>
-                <li><a data-lang="php" href="#">PHP</a></li>
-                <li><a data-lang="java" href="#">Java</a></li>
-                <li><a data-lang="erlang" href="#">Erlang</a></li>
-                <li><a data-lang="shell" href="#">Shell / Bash</a></li>
-              </ul>
-            </span>
-            <a id="topic-upload-image" rel="twipsy" title="" href="#" data-original-title="上传图片"><i class="fa fa-fa fa-image"></i> </a>
-            <input type="file" id="topic-upload-images" style="display:none">
-          </div>
-          <ul class="nav nav-pills" style="clear:none;">
-            {{#each tabs as |tab|}}
-              {{#tab-item tab=tab.action activeTab=activeTab tagName='li'}}
-                <a href="#" {{action 'selectTab' tab.action}}>{{tab.text}}</a>
-              {{/tab-item}}
-            {{/each}}
-          </ul>
-        </div>
-
-        <form class="new_reply" id="new_reply" action="#" accept-charset="UTF-8" data-remote="true"
-              method="post"><input name="utf8" type="hidden" value="✓">
-
-          <div class="form-group tab-content">
-            {{#tab-item tab='edit' activeTab=activeTab class='tab-pane'}}
-              {{textarea value=replyContent rows='4' tabindex='1' class='topic-editor form-control' key-down='combSubmit'}}
-            {{/tab-item}}
-
-            {{#tab-item tab='preview' activeTab=activeTab class='tab-pane'}}
-              <div class="preview markdown">
-                {{{mark-down replyContent}}}
-              </div>
-            {{/tab-item}}
-          </div>
-          <div class="submit-buttons">
-            {{input type='submit' id='reply-button' disabled=isProcessing class='btn btn-primary' value='提交回复'}}
-
-            <span class="help-inline" title="或者 Ctrl + Enter"><kbd>Command</kbd> + <kbd>Enter</kbd></span>
-
-            <div class="pull-right"><a href="https://ruby-china.org/markdown" target="_blank">排版说明</a></div>
-          </div>
-        </form>
-      </div>
-    </div>
-  {{/if}}
-{{/if}}

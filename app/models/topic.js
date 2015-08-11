@@ -1,5 +1,4 @@
 import DS from 'ember-data';
-import ajax from 'ic-ajax';
 
 var Topic = DS.Model.extend({
   /*
@@ -51,37 +50,18 @@ var Topic = DS.Model.extend({
   user: DS.belongsTo('user', {async: false}),
   replies: DS.hasMany('reply', {async: true}),
 
-  refresh(force=false) {
-    if(force) {
-      return this.reload();
-    } else if(Ember.isEmpty(this.get('body')) || Ember.isEmpty(this.get('body_html'))) {
-      return this.reload();
-    } else {
-      return this;
-    }
+  // 添加本地的 reply
+  addReply(content) {
+    return this.store.createRecord('reply', {
+      topic: this,
+      body: content
+    });
   },
 
-  postReply(reply) {
-    /*
-    使用 Ember Data 的方式创建的时候, 无法匹配设计好的 URL, 所以无法使用.
-    var r = this.store.createRecord('reply', {
-      body_html: reply,
-      topic: this
-    });
-    r.save();
-    */
-
-    // token 需要拥有过期时间
-    return ajax(`https://ruby-china.org/api/v3/topics/${this.get('id')}/replies.json`, {
-        method: 'POST',
-        data: {body: reply}
-      }
-    ).then((res) => {
-        //var obj = JSON.parse('{"reply":{"id":264449,"body_html":"<p>Cool 200</p>","created_at":"2015-06-28T01:25:00.402+08:00","updated_at":"2015-06-28T01:25:00.402+08:00","deleted":false,"topic_id":26210,"user":{"id":19284,"login":"wyattpan","name":"wyatt","avatar_url":"https://ruby-china.org/avatar/7c7383d785258bddcf3553f51a665a5b.png?s=120"},"abilities":{"update":true,"destroy":true}}}');
-        res['reply']['topic'] = this;
-        this.store.pushPayload('reply', res);
-      });
+  loadReplies(page = 1, limit = 100) {
+    return this.store.query('reply', {page: page, limit: limit, preload: {topic: this.get('id')}});
   }
+
 });
 
 Topic.reopenClass({

@@ -5,7 +5,8 @@
     "-Promise",
     "Ember",
     "NProgress",
-    "$"
+    "$",
+    "EMOJI_LIST"
   ],
   "browser": true,
   "boss": true,
