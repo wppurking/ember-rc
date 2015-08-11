@@ -11,7 +11,7 @@ export default Ember.Component.extend({
         dulArray.push(Ember.A());
       }
     });
-    return dulArray.filter((array) => { return array.length > 0});
+    return dulArray.filter((array) => { return array.length > 0;});
   }.property('attrs.users.[]'),
 
   actions: {
