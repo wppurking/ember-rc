@@ -2,8 +2,8 @@ import Ember from 'ember';
 import ajax from 'ic-ajax';
 
 export default Ember.Controller.extend({
-  username: 'wyatt@easya.cc',
-  password: '132456',
+  username: '',
+  password: '',
 
   ajaxing: false,
   isShowLogin: false,
