@@ -1,12 +1,14 @@
 <div class="avatar">
-  <a href="#">
+  {{#link-to 'users.show' reply.user.id}}
     <img class="media-object avatar-48" src={{reply.user.avatar_url}} alt={{reply.user.id}}>
-  </a>
+  {{/link-to}}
 </div>
 <div class="infos">
   <div class="info">
         <span class="name">
-          <a data-name="又拍云存储" href="#">{{reply.user.login}}</a>
+          {{#link-to 'users.show' reply.user.login}}
+            {{reply.user.login}}
+          {{/link-to}}
         </span> ·
         <span class="time">
           <a class="reply-floor" id="reply-{{reply.id}}" {{action 'scrollToit' reply}}>#{{number}}</a> ·
@@ -20,6 +22,7 @@
         </span>
   </div>
   <div class="markdown">
+    <!-- TODO: reply body 里面的 @xxx link 需要处理-->
     {{{reply.body_html}}}
   </div>
 </div>
