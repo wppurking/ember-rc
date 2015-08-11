@@ -15,8 +15,12 @@ export default Ember.Controller.extend(SR, AjaxProcessing, {
 
   replyContent: '',
 
-  ishaveReplies: function() {
+  isHaveReplies: function() {
     return this.model.get('replies.length') > 0;
+  }.property('model.replies.[]', 'page'),
+
+  isHavePages: function() {
+    return this.model.get('replies.length') > 50;
   }.property('model.replies.[]', 'page'),
 
   pagedReplies: function() {
