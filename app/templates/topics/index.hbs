@@ -35,35 +35,37 @@
   </div>
 
   <div class="col-md-3">
-    <div class="panel panel-default clearfix">
-      <div class="panel-body">
-        <div class="btn-group pull-left">
-          {{#link-to 'topics.new' class='btn btn-primary'}}发布新帖{{/link-to}}
-          <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu">
-            <li>
-              <a href="/topics/new?node=3">Gem</a>
-            </li>
-            <li>
-              <a href="/topics/new?node=24">工具控</a>
-            </li>
-            <li>
-              <a href="/topics/new?node=27">瞎扯淡</a>
-            </li>
-            <li>
-              <a href="/topics/new?node=44">部署</a>
-            </li>
-            <li>
-              <a href="/topics/new?node=52">新手问题</a>
-            </li>
-          </ul>
-        </div>
+    {{#if auth.isLogin}}
+      <div class="panel panel-default clearfix">
+        <div class="panel-body">
+          <div class="btn-group pull-left">
+            {{#link-to 'topics.new' class='btn btn-primary'}}发布新帖{{/link-to}}
+            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="/topics/new?node=3">Gem</a>
+              </li>
+              <li>
+                <a href="/topics/new?node=24">工具控</a>
+              </li>
+              <li>
+                <a href="/topics/new?node=27">瞎扯淡</a>
+              </li>
+              <li>
+                <a href="/topics/new?node=44">部署</a>
+              </li>
+              <li>
+                <a href="/topics/new?node=52">新手问题</a>
+              </li>
+            </ul>
+          </div>
 
-        <a title="订阅 Ruby China 社区新帖" class="pull-right feed-button btn btn-default" target="_blank"
-           href="https://ruby-china.org/topics/feed"><span></span> RSS</a>
+          <a title="订阅 Ruby China 社区新帖" class="pull-right feed-button btn btn-default" target="_blank"
+             href="https://ruby-china.org/topics/feed"><span></span> RSS</a>
+        </div>
       </div>
-    </div>
+    {{/if}}
   </div>
 </div>

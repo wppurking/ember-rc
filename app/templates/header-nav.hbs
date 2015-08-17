@@ -31,8 +31,17 @@
 
         {{#if auth.isLogin}}
           <ul class="nav user-bar navbar-nav navbar-right">
+
+            <li class="notification-count">
+              <a href="#" class="new" title="通知">
+                <i class="glyphicon glyphicon-bullhorn"></i>
+                <span class="count" style="display: inline;">{{notifyCount}}</span>
+              </a>
+            </li>
+
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">{{auth.username}} {{auth.persitToken}} <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                 aria-expanded="true">{{auth.username}} {{auth.persitToken}} <span class="caret"></span></a>
               <button class="navbar-toggle" type="button" data-toggle="dropdown" role="button" aria-expanded="false">
                 <span class="sr-only">Toggle</span>
                 <i class="fa fa-reorder"></i>
@@ -71,6 +80,7 @@
               <div class="popover bottom {{showLoginClass}}" id="login-form">
                 <div class="arrow"></div>
                 <h3 class="popover-title">登录框</h3>
+
                 <div class="popover-content">
                   <form>
                     {{input name='username' value=username}}

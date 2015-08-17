@@ -7,6 +7,7 @@ export default Ember.Controller.extend({
 
   ajaxing: false,
   isShowLogin: false,
+  notifyCount: 0,
   showLoginClass: function() {
     return this.get('isShowLogin') ? 'show-login' : '';
   }.property('isShowLogin'),
@@ -19,8 +20,14 @@ export default Ember.Controller.extend({
   init() {
     this._super();
     this.auth.login();
+    this.notifyCountInit();
   },
 
+  notifyCountInit() {
+    this.store.findAll('notification').then((all) => {
+      this.set('notifyCount', all.get('length'));
+    });
+  },
 
 
   actions: {
@@ -46,11 +53,6 @@ export default Ember.Controller.extend({
     },
 
     // TODO: For Test
-    user() {
-      console.log(this.auth.get('user'));
-    },
-
-    // TODO: For Test
     hello() {
       ajax('https://ruby-china.org/api/v3/hello.json', {method: 'GET'})
         .then((res) => {
@@ -59,8 +61,6 @@ export default Ember.Controller.extend({
           alert('请求需要验证 Toekn, 请求失败.');
         });
     }
-
-
   }
 
 });
