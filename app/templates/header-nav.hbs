@@ -33,10 +33,10 @@
           <ul class="nav user-bar navbar-nav navbar-right">
 
             <li class="notification-count">
-              <a href="#" class="new" title="通知">
+              {{#link-to 'notifications' class='new' title='通知'}}
                 <i class="glyphicon glyphicon-bullhorn"></i>
                 <span class="count" style="display: inline;">{{notifyCount}}</span>
-              </a>
+              {{/link-to}}
             </li>
 
             <li class="dropdown">

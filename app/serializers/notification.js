@@ -9,33 +9,37 @@ export default ActiveModelSerializer.extend(DS.EmbeddedRecordsMixin, {
     topic: {serialize: 'id', deserialize: 'id'}
   },
 
-  //normalizeResponse(store, type, payload, id, requestType) {
-  //  console.log("notification: normalizeResponse:" + id + "解析 json 到 object:" + payload);
-  //  return this._super(store, type, payload, id, requestType);
-  //}
-  extractFindAll(store, typeClass, payload, id, requestType) {
+  // extractArray 与 extractSingle 是一对(老 API 中, 新的为 normalize<xxx>Response)
+  // 所有处理返回 Array 数组的结构都使用此方法.
+  extractArray(store, primaryTypeClass, rawPayload) {
     // 由于 Ruby-China 获取的 Json 数据与 ember-data 之间的数据不匹配, 需要做一些处理.
-    payload['notifications'].forEach((noty) => {
-      var replyObj = null;
-      var hash = noty;
-      switch(hash['type']) {
-        case 'TopicReply':
-          replyObj = hash['reply'];
-          hash['topic'] = {id: replyObj['topic_id'], type: 'topic'};
-          hash['reply'] = {id: replyObj['id'], type: 'reply'};
-          break;
-        case 'NodeChanged':
-          break;
-        case 'Follow':
-          break;
-        default:
-          // Mention
-          replyObj = hash['mention'];
-          hash['topic'] = {id: replyObj['topic_id'], type: 'topic'};
-          hash['reply'] = {id: replyObj['id'], type: 'reply'};
-          break;
-      }
+    rawPayload['notifications'].forEach((noty) => {
+      this.rubyChinaNotyAdapter(noty);
     });
-    return this._super(store, typeClass, payload, id, requestType);
+    return this._super(store, primaryTypeClass, rawPayload);
+  },
+
+  // will effect origin noty hash
+  rubyChinaNotyAdapter(noty) {
+    var replyObj = null;
+    var hash = noty;
+    switch(hash['type']) {
+      case 'TopicReply':
+        replyObj = hash['reply'];
+        hash['topic'] = {id: replyObj['topic_id'], type: 'topic'};
+        hash['reply'] = {id: replyObj['id'], type: 'reply'};
+        break;
+      case 'NodeChanged':
+        break;
+      case 'Follow':
+        break;
+      default:
+        // Mention
+        replyObj = hash['mention'];
+        hash['topic'] = {id: replyObj['topic_id'], type: 'topic'};
+        hash['reply'] = {id: replyObj['id'], type: 'reply'};
+        break;
+    }
+    return hash;
   }
 });

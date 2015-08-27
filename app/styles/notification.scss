@@ -1,0 +1,18 @@
+#notifications {
+  .notification {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility .7s, opacity .7s;
+
+    &.remove {
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .date {
+      font-size: 12px;
+      color: $gray;
+    }
+
+  }
+}

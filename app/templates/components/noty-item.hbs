@@ -1,0 +1,31 @@
+<div class="media-left avatar">
+  {{#link-to 'users.show' noty.actor.login}}
+    <img class="media-object avatar-48" src="{{noty.actor.avatar_url}}" alt="{{noty.actor.id}}">
+  {{/link-to}}
+</div>
+<div class="media-body">
+  <div class="media-heading">
+    <span class="user">
+      {{#link-to 'users.show' noty.actor.login}}
+        {{noty.actor.login}}
+      {{/link-to}}
+    </span>
+    {{#if isNeedUserInfo}}
+      <span class="info">在
+        {{#link-to 'topics.show' noty.topic.id}}{{noty.topic.title}}{{/link-to}}
+        提及你：
+      </span>
+    {{/if}}
+    <span class="date pull-right"><i class="glyphicon glyphicon-time"></i>
+      <abbr class="timeago" title="{{noty.created_at}}">{{time-in-words noty.created_at}}</abbr>
+    </span>
+  </div>
+  <div class="summary markdown">
+    {{{mark-down summary}}}
+  </div>
+</div>
+
+<div class="media-right opts">
+  <i {{action 'remove'}} class="glyphicon glyphicon-trash clickable"></i>
+</div>
+{{yield}}

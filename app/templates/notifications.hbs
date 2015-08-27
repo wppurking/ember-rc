@@ -1,0 +1,21 @@
+<div id="notifications" class="panel panel-default">
+  <div class="tools panel-heading">
+    <a class="btn btn-danger" data-disable-with="清空中..." rel="nofollow" data-method="post"
+       href="/notifications/clear"><i class="fa fa-fa fa-trash"></i> <span>清空</span></a>
+
+    <div class="pull-right"><h4>通知提醒</h4></div>
+  </div>
+  <div class="panel-body">
+    {{#each model as |noty|}}
+      {{noty-item noty=noty}}
+    {{/each}}
+  </div>
+  <div class="panel-footer">
+    <ul class="pagination">
+      <li class="prev previous_page disabled"><a href="#">← 上一页</a></li>
+      <li class="active"><a rel="start" href="/notifications?page=1">1</a></li>
+      <li><a rel="next" href="/notifications?page=2">2</a></li>
+      <li class="next next_page "><a rel="next" href="/notifications?page=2">下一页 →</a></li>
+    </ul>
+  </div>
+</div>

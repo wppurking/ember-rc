@@ -5,6 +5,7 @@
 @import "nodes";
 @import "index";
 @import "users";
+@import "notification";
 
 img.emoji {
   width: 20px;
@@ -45,4 +46,8 @@ img.emoji {
 .topic-editor-new {
   @extend .topic-editor;
   min-height: 280px;
+}
+
+.clickable {
+  cursor: pointer;
 }

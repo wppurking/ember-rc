@@ -28,7 +28,7 @@ export default Ember.Controller.extend({
   },
 
   notifyCountInit() {
-    this.store.findAll('notification').then((all) => {
+    this.store.query('notification', {}).then((all) => {
       this.set('notifyCount', all.filterBy('read', false).get('length'));
     });
   },
