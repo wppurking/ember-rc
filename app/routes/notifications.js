@@ -15,5 +15,18 @@ export default Ember.Route.extend({
 
   model() {
     return this.store.query('notification', {});
+  },
+
+  setupController(controller, model) {
+    controller.set('isEmpty', model.get('length') === 0);
+
+    this._super(...arguments);
+  },
+
+  actions: {
+    clear() {
+      console.log("view action bulbbu up to here.");
+      alert('功能还未实现呢.');
+    }
   }
 });

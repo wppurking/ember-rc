@@ -1,8 +1,19 @@
 #notifications {
   .notification {
+    position: relative;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f0f4f6;
+
     visibility: visible;
     opacity: 1;
     transition: visibility .7s, opacity .7s;
+
+    &:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
 
     &.remove {
       visibility: hidden;
