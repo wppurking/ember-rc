@@ -14,7 +14,7 @@ export default ActiveModelSerializer.extend(DS.EmbeddedRecordsMixin, {
   //  return this._super(store, type, payload, id, requestType);
   //}
   extractFindAll(store, typeClass, payload, id, requestType) {
-    console.log(payload);
+    // 由于 Ruby-China 获取的 Json 数据与 ember-data 之间的数据不匹配, 需要做一些处理.
     payload['notifications'].forEach((noty) => {
       var replyObj = null;
       var hash = noty;
@@ -36,7 +36,6 @@ export default ActiveModelSerializer.extend(DS.EmbeddedRecordsMixin, {
           break;
       }
     });
-    console.log(payload);
     return this._super(store, typeClass, payload, id, requestType);
   }
 });

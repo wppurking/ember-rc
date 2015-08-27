@@ -19,13 +19,17 @@ export default Ember.Controller.extend({
 
   init() {
     this._super();
-    this.auth.login();
-    this.notifyCountInit();
+    this.auth.login().then(() => {
+      //   只有当成功登陆才去加载 Notification
+      if(this.auth.get('isLogin')) {
+        this.notifyCountInit();
+      }
+    });
   },
 
   notifyCountInit() {
     this.store.findAll('notification').then((all) => {
-      this.set('notifyCount', all.get('length'));
+      this.set('notifyCount', all.filterBy('read', false).get('length'));
     });
   },
 

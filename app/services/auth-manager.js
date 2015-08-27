@@ -19,7 +19,7 @@ export default Ember.Service.extend({
    * 登陆
    * @retun 返回 Ember.RSVP.Promise 对象
    */
-  login(user, paswd) {
+    login(user, paswd) {
     var service = this;
     if(this.reloadFromStoreage()) {
       service.registerTokenToAjaxHeader();
@@ -35,13 +35,16 @@ export default Ember.Service.extend({
       }).catch((xhr, err) => {
         console.error(`用户登陆失败, 因为 [${err}]`);
       });
+    } else {
+      // 一定要返回一个 Promise 对象
+      return new Ember.RSVP.resolve(false);
     }
   },
 
   /**
    * 登出
    */
-  logout() {
+    logout() {
     this.set('authToken', null);
     this.set('user', null);
     localStorage.removeItem('authToken');
