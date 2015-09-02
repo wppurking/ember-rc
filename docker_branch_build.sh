@@ -1,2 +1,2 @@
 #!/bin/bash
-rm -rf tmp/ && rm -rf dist/ && ember build -prod && mv dist dist_bak && git checkout dockerfile && rm -rf dist && mv dist_bak dist && git add -f dist/ && git commit -am 'update dist/' && git push origin dockerfile && git checkout master
+rm -rf tmp/ && rm -rf dist/ && ember build -prod && mv dist dist_bak && git checkout dockerfile && rm -rf dist && mv dist_bak dist && sed -i .bak 's/assets\//http:\/\/7xl7l0.com1.z0.glb.clouddn.com\/assets\//g' dist/index.html && rm dist/index.html.bak && git add -f dist/ && git commit -am 'update dist/' && git push origin dockerfile && git checkout master && open https://dashboard.daocloud.io/build-flows/7811724b-9806-401e-ad71-0fa1b440c745
