@@ -11,12 +11,11 @@
           {{/link-to}}
         </span> ·
         <span class="time">
-          <a class="reply-floor" id="reply-{{reply.id}}" {{action 'scrollToit' reply}}>#{{number}}</a> ·
+          <a class="reply-floor" id="reply-{{reply.id}}" {{action 'scrollToit'}}>#{{number}}</a> ·
           <abbr class="timeago" title="{{reply.updated_at}}">{{time-in-words reply.updated_at}}</abbr>
         </span>
         <span class="opts pull-right">
-            <a title="喜欢" data-count="0" data-state="" data-type="Reply" data-id="260638" class="likeable " href="#"><i
-                class="fa fa-heart-o"></i> <span>喜欢</span></a>
+            <a title="喜欢" class="likeable " {{action 'likeIt'}}><i class="glyphicon glyphicon-heart-empty"></i> <span>喜欢</span></a>
             <a class="edit fa fa-pencil" data-uid="1394" title="修改回帖" href="#"></a>
             <a data-floor="12" data-login="upyun" title="回复此楼" class="btn-reply fa fa-mail-reply" href="#"></a>
         </span>
