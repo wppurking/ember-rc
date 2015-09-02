@@ -1,3 +1,13 @@
+v0.3.0 - 以查看用户的信息为目的, 了解他人的信息为目标
+* 使用 At.js 的 @ 用户
+* 图片缩放功能
+* 切换使用官方 OAuth 登陆不再需要 Proxy
+* 用户列表
+* 用户信息
+* Notification 的通知功能
+* Topic 的列表页面记住 scroll position
+* CSS Spinner 代替 Youtube style page ProgressBar
+
 v0.2.0  -  以用户能够创建, 回复 Topics 为目标
 * 使用 sinatra 代理登陆 Ruby-Chian 获取 token
 * 用户通过 oauth2 登陆/登出系统
