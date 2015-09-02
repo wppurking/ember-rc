@@ -7,7 +7,7 @@ export default Ember.Route.extend({
       this.transitionTo('application');
       Ember.run.scheduleOnce('afterRender', function() {
         //alert('您还未登陆呢.');
-        console.log('您还未登陆呢.')
+        console.log('您还未登陆呢.');
       });
     }
   },

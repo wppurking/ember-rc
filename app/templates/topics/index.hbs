@@ -17,7 +17,7 @@
             <a href="#">← 上一页</a>
           </li>
           {{#each pages as |page|}}
-            {{#link-to 'topics' (query-params page=page) tagName='li'}}
+            {{#link-to 'topics.index' (query-params page=page) tagName='li'}}
               <a href="#" {{action 'scrollToTopics'}}>{{page}}</a>
             {{/link-to}}
           {{/each}}

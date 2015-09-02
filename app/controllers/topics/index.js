@@ -39,6 +39,7 @@ export default Ember.Controller.extend(SR, {
     },
 
     scrollToTopics() {
+      this.send('resetScroll');
       this.scrollTo($('.topics'));
     }
   }
