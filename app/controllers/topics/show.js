@@ -55,14 +55,17 @@ export default Ember.Controller.extend(SR, AjaxProcessing, {
     // 多键提交
     combSubmit() {
       if(this._isValidCombination(event)) {
-        this.aroundProcess(() => {
-          var reply = this.get('model').addReply(this.get('replyContent'));
-          reply.save().then(() => {
-            this.set('replyContent', '');
-          });
-        });
+        this.formSubmit();
       }
+    },
 
+    formSubmit() {
+      this.aroundProcess(() => {
+        var reply = this.get('model').addReply(this.get('replyContent'));
+        reply.save().then(() => {
+          this.set('replyContent', '');
+        });
+      });
     }
   },
 

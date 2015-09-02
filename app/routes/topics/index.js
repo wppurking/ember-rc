@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import RRP from 'ember-rc/mixins/route-remeber-position';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(RRP, {
   // 在 Route 中的 queryParams 是配置
   queryParams: {
     page: {
@@ -23,4 +24,5 @@ export default Ember.Route.extend({
     controller.set('limit', this.get('limit')).set('offset', this.get('offset'));
     this._super(controller, model);
   }
+
 });

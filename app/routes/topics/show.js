@@ -33,7 +33,8 @@ export default Ember.Route.extend(SR, {
 
   afterModel(model, transition) {
     if(!Ember.isBlank(transition.queryParams.top) && transition.queryParams.top === 'true') {
-      this.scrollToTop();
+      // TODO 将 queryParams.top 保留的原因是自己查看, 如何在 URL 中传递参数
+      // this.scrollToTop();
     }
     return model;
   },
@@ -54,10 +55,10 @@ export default Ember.Route.extend(SR, {
     // 2. 一个还没有合并的 pull request. https://github.com/emberjs/data/issues/2162
     // 3. 这种写法现在还无法到达 #2162 的效果. 现在其效果为: 如果 model.replies: [1,2,3] 则调用 DS.Adapter.findManys 去处理. 如果 model.links.xxx: 'url' 则调用 FindHasMany 去处理.
     /*
-    model.get('replies').then(()=> {
-      controller.set('isLoadingTopics', false);
-    });
-    */
+     model.get('replies').then(()=> {
+     controller.set('isLoadingTopics', false);
+     });
+     */
     // 直接将嵌套 loadReplies 封装到 topic model 的方法中去了.
     model.loadReplies().finally(() => {
       controller.set('isLoadingTopics', false);
