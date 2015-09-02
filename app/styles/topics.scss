@@ -126,6 +126,11 @@ abbr.timeago {
   }
 }
 
+.replies-loading{
+  position: relative;
+  min-height: 100px;
+}
+
 // 复写 dropzone 自己的 css
 .dropzone {
   min-height: 0;

@@ -25,9 +25,9 @@
       </div>
     </div>
     <div class="avatar media-right">
-      <a href="#">
+      {{#link-to 'users.show' topic.user.id}}
         <img class="media-object avatar-48" src="{{topic.user.avatar_url}}" alt="{{topic.user.id}}">
-      </a>
+      {{/link-to}}
     </div>
   </div>
 

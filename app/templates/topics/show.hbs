@@ -3,9 +3,11 @@
     {{topic-show topic=model}}
 
     {{#if isLoadingTopics}}
-      <div class="no-result">
-        评论加载中...
+      <div class="replies-loading">
+        {{ex-spinner}}
       </div>
+
+
     {{else}}
       {{#if isHaveReplies}}
         <div id="replies" class="panel panel-default">
@@ -93,6 +95,8 @@
           </div>
         </div>
       {{/if}}
+
+
     {{/if}}
   </div>
 

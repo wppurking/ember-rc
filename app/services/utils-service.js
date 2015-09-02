@@ -8,7 +8,6 @@ export default Ember.Service.extend({
   initFluidboxImg($imgs) {
     if(Ember.isArray($imgs)) {
       Ember.run.scheduleOnce('afterRender', function() {
-        console.log(`utils-service.afterRender.... have ${$imgs.size()} images.`);
         $imgs.each((i, img) => {
           var className = img.getAttribute('class');
           if(Ember.isPresent(className) && className.indexOf('emoji') >= 0) {

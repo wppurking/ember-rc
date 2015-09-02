@@ -21,7 +21,6 @@ module.exports = function(defaults) {
 
   // 需要定制这个 vendor 的 css 所以无法使用 bower_component 里面的
   // TODO 不知道为什么无法在 vendor 里面使用 scss?
-  app.import('vendor/nprogress.css');
   app.import('bower_components/dropzone/dist/dropzone.css');
   app.import('bower_components/At.js/dist/css/jquery.atwho.css');
   app.import('bower_components/fluidbox/css/fluidbox.css');
@@ -37,7 +36,6 @@ module.exports = function(defaults) {
 
 
   app.import('bower_components/bootstrap-sass/assets/javascripts/bootstrap.js');
-  app.import('bower_components/nprogress/nprogress.js');
 
   app.import('bower_components/moment/moment.js');
   app.import('bower_components/moment/locale/zh-cn.js');

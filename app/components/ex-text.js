@@ -17,7 +17,6 @@ export default Ember.TextArea.extend({
 
   initAtWho: function() {
     if(Ember.isPresent(this.attrs.replies) && Ember.isPresent(this.$())) {
-      console.log(`reply counts: ${this.attrs.replies.value.get('length')}`);
       var commenters = Ember.A();
       this.attrs.replies.value.forEach((r) => {
         commenters.push(r.get('user.login'));

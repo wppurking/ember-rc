@@ -13,9 +13,6 @@ export default Ember.Component.extend({
   },
 
   didInsertElement() {
-    console.log("uploader-img insert into dom tree.");
-    console.log(this.url());
-
     var component = this;
     var dropZoneOptions = {
       url: this.url(),
@@ -30,7 +27,6 @@ export default Ember.Component.extend({
         this.on('success', (file, resp) => {
           //image_url: "https://ruby-china-files.b0.upaiyun.com/photo/2015/46d68225e902b7f78eafeb0c0fae6e31.png"
           //![](https://ruby-china-files.b0.upaiyun.com/photo/2015/f2edef8cd04b05bc7c7ee11bc067e5c4.png)
-          console.log(resp);
           component.sendAction('succCallBack', `![](${resp['image_url']})`);
         });
       }

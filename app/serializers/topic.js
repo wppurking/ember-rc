@@ -13,12 +13,12 @@ export default ActiveModelSerializer.extend(DS.EmbeddedRecordsMixin, {
   },
 
   extract(store, type, payload, id) {
-    console.log("extract;" + id + "解析 json 到 object.");
+    //console.log("extract;" + id + "解析 json 到 object.");
     return this._super(...arguments);
   },
 
   extractFind(store, primaryModelClass, payload) {
-    console.log('extractFind..' + payload);
+    //console.log('extractFind..' + payload);
     return this._super(...arguments);
   },
 

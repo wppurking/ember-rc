@@ -10,7 +10,6 @@ export default Ember.Route.extend(SR, {
   },
 
   model(params) {
-    console.log("trigger model hook in route..");
     // find 老方法. 无缓存发 HTTP, 有缓存理解返回.(都返回 Promise)
     //return this.store.find('topic', params.topic_id);
 
