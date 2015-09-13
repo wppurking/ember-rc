@@ -8,8 +8,9 @@ export default Ember.Controller.extend({
   ajaxing: false,
   isShowLogin: false,
   notifyCount: 0,
+
   showLoginClass: function() {
-    return this.get('isShowLogin') ? 'show-login' : '';
+    return this.get('isShowLogin') ? 'show-login' : 'hidden-login';
   }.property('isShowLogin'),
 
   reset() {
@@ -38,7 +39,6 @@ export default Ember.Controller.extend({
 
     toggleLogin() {
       this.toggleProperty('isShowLogin');
-      Ember.$('#login-form').css('top', 40).css('left', -130);
     },
 
     login() {

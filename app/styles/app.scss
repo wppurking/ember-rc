@@ -13,10 +13,23 @@ img.emoji {
   height: 20px;
 }
 
-.show-login {
+.hidden-login {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
   display: block;
   width: 300px;
   margin: 20px;
+  top: 40px;
+  left: -140px;
+  transition: opacity .4s, visibility .4s;
+}
+
+.show-login {
+  visibility: visible;
+  opacity: 1;
+  display: block;
+  @extend .hidden-login;
 }
 
 .editor-toolbar {
@@ -56,4 +69,30 @@ img.emoji {
 
 .clickable {
   cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .hidden-login {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    display: block;
+    width: 300px;
+    margin: 20px;
+    top: 0;
+    left: 0;
+    transition: top .4s, visibility .5s, opacity .5s;
+  }
+
+  .show-login {
+    position: absolute;
+    visibility: visible;
+    opacity: 1;
+    display: block;
+    width: 300px;
+    margin: 20px;
+    top: -140px;
+    left: 0;
+    transition: top .4s;
+  }
 }

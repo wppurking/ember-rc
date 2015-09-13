@@ -48,6 +48,7 @@ export default Ember.Service.extend({
         data: window.EMOJI_LIST,
         tpl: "<li data-value='${name}:'><img src='https://ruby-china-files.b0.upaiyun.com/assets/emojis/${name}.png' height='20' width='20'/> ${name} </li>"
       };
+      console.log(emojiOptions);
 
 
       var opts = Ember.merge(commeterOptions, options);

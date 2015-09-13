@@ -126,7 +126,7 @@ abbr.timeago {
   }
 }
 
-.replies-loading{
+.replies-loading {
   position: relative;
   min-height: 100px;
 }
@@ -137,6 +137,22 @@ abbr.timeago {
   padding: 0;
   border: 0;
 }
+
 .dz-clickable {
   cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .avatar {
+    .avatar-48 {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  #replies {
+    .reply {
+      padding: 10px 15px 10px 58px;
+    }
+  }
 }
