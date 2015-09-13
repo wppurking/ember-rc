@@ -73,24 +73,12 @@ img.emoji {
 
 @media (max-width: 480px) {
   .hidden-login {
-    position: absolute;
-    visibility: hidden;
-    opacity: 0;
-    display: block;
-    width: 300px;
-    margin: 20px;
-    top: 0;
+    top: -340px;
     left: 0;
     transition: top .4s, visibility .5s, opacity .5s;
   }
 
   .show-login {
-    position: absolute;
-    visibility: visible;
-    opacity: 1;
-    display: block;
-    width: 300px;
-    margin: 20px;
     top: -140px;
     left: 0;
     transition: top .4s;
