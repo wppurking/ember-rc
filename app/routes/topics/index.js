@@ -21,7 +21,8 @@ export default Ember.Route.extend(RRP, {
   },
 
   setupController(controller, model) {
-    controller.set('limit', this.get('limit')).set('offset', this.get('offset'));
+    controller.set('limit', this.get('limit'));
+    controller.set('offset', this.get('offset'));
     this._super(controller, model);
   }
 
