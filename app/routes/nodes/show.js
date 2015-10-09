@@ -18,7 +18,7 @@ export default Ember.Route.extend({
     this.set('page', params.page);
     return Ember.RSVP.hash({
       topics: this.store.query('topic', {node_id: params.node_id, offset: this.get('offset')}),
-      node: this.store.findAll('node').get('length') > 0 ? this.store.find('node', params.node_id) : this.store.findAll('node').then((nodes) => {
+      node: this.store.findAll('node').get('length') > 0 ? this.store.findRecord('node', params.node_id) : this.store.findAll('node').then((nodes) => {
         return nodes.findBy('id', params.node_id);
       })
     });
