@@ -6,8 +6,6 @@ moduleForComponent('ex-spinner', 'Integration | Component | ex spinner', {
 });
 
 test('it renders', function(assert) {
-  assert.expect(2);
-
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
 
@@ -22,5 +20,8 @@ test('it renders', function(assert) {
     {{/ex-spinner}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$().text().trim(), '');
+  var wraper = this.$('.whirly-loader-wrapper');
+  assert.equal(wraper.size(), 1);
+  assert.equal(wraper.find('.whirly-loader').size(), 1);
 });

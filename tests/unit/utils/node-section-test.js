@@ -5,6 +5,6 @@ module('Unit | Utility | node section');
 
 // Replace this with your real tests.
 test('it works', function(assert) {
-  var result = nodeSection();
+  var result = nodeSection([]);
   assert.ok(result);
 });
