@@ -6,7 +6,7 @@ moduleFor('controller:application', {
   needs: ['service:auth-manager'],
 
   beforeEach: function() {
-    //TODO 这个我还不知道如何测试在 Controller 里面有统一注入的 Component.
+    //TODO 这个我还不知道如何测试在 Controller 里面有统一注入的 Service.
     // 使用 Ember.inject.service('auth-manager') 注入的话还有简单的方法.
     this.inject.service('auth', 'service:auth-manager');
   }

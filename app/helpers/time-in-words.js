@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import moment from 'moment';
+//import moment from 'moment';
 
 export default Ember.Helper.helper(function(params) {
   // 暂时先不处理 ago 时间会每分钟变化一次的问题, 因为如果注册的 callback 没找到合适的位置注销, 那么会是一个内存溢出的点

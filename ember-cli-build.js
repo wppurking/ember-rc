@@ -4,6 +4,9 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     // Add options here
+    velocityOptions: {
+      ui: true
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated
@@ -26,16 +29,22 @@ module.exports = function(defaults) {
   app.import('bower_components/fluidbox/css/fluidbox.css');
 
 
-  // Bootstrap Glyphicons 引入:
+  // Bootstrap 引入:
+  var bootstrap_bower = "bower_components/bootstrap/dist";
   // * http://stackoverflow.com/questions/23349959/recommended-way-to-include-bootstrap-library-in-ember-js-ember-cli-app
   ['eot', 'ttf', 'svg', 'woff', 'woff2'].forEach(function(sufix) {
-    app.import("bower_components/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular." + sufix, {
+    app.import(bootstrap_bower + '/fonts/glyphicons-halflings-regular.' + sufix, {
       destDir: 'fonts/bootstrap'
     });
   });
+  app.import(bootstrap_bower + '/css/bootstrap.min.css');
+  app.import(bootstrap_bower + '/js/bootstrap.min.js');
 
 
-  app.import('bower_components/bootstrap-sass/assets/javascripts/bootstrap.js');
+  // Velocity
+  app.import('bower_components/velocity/velocity.min.js');
+  app.import('bower_components/velocity/velocity.ui.min.js');
+
 
   app.import('bower_components/moment/moment.js');
   app.import('bower_components/moment/locale/zh-cn.js');
