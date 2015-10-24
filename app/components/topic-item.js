@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   classNames: ['topic-item'],
 
   didInsertElement() {
-  	this.$().velocity('transition.slideUpBigIn', {duration: 500});
+  	this.$().velocity('transition.slideUpBigIn');
   },
 
   isShowReplyCount: function() {

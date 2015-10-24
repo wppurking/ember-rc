@@ -34,7 +34,7 @@ module.exports = function(defaults) {
   // * http://stackoverflow.com/questions/23349959/recommended-way-to-include-bootstrap-library-in-ember-js-ember-cli-app
   ['eot', 'ttf', 'svg', 'woff', 'woff2'].forEach(function(sufix) {
     app.import(bootstrap_bower + '/fonts/glyphicons-halflings-regular.' + sufix, {
-      destDir: 'fonts/bootstrap'
+      destDir: 'fonts'
     });
   });
   app.import(bootstrap_bower + '/css/bootstrap.min.css');
